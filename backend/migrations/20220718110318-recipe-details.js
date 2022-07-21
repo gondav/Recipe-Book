@@ -15,7 +15,15 @@ exports.setup = function (options, seedLink) {
 };
 
 exports.up = function (db) {
-  return db.createTable('recipe_ingredient', {
+  return db.createTable('recipe_details', {
+    id: {
+      type: 'int',
+      primaryKey: true,
+      autoincrement: true,
+      unique: true,
+      notNull: true,
+      unsigned: true
+    },
     recipe_id: {
       type: 'int',
       unsigned: true,
@@ -104,7 +112,7 @@ exports.up = function (db) {
 };
 
 exports.down = function (db) {
-  return db.dropTable('recipe_ingredient');
+  return db.dropTable('recipe_details');
 };
 
 exports._meta = {

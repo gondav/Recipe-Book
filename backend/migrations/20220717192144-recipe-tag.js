@@ -24,20 +24,6 @@ exports.up = function (db) {
       autoIncrement: true,
       unique: true
     },
-    recipe_id: {
-      type: 'int',
-      unsigned: true,
-      notNull: true,
-      foreignKey: {
-        name: 'recipe_tag_recipe_id_fk',
-        table: 'recipe',
-        rules: {
-          onDelete: 'CASCADE',
-          onUpdate: 'RESTRICT'
-        },
-        mapping: 'recipe_id'
-      }
-    },
     tag: {
       type: 'string',
       length: 64,
