@@ -16,6 +16,14 @@ exports.setup = function (options, seedLink) {
 
 exports.up = function (db) {
   return db.createTable('saved_recipe', {
+    id: {
+      type: 'int',
+      primaryKey: true,
+      unsigned: true,
+      notNull: true,
+      autoIncrement: true,
+      unique: true
+    },
     user_id: {
       type: 'int',
       unsigned: true,
