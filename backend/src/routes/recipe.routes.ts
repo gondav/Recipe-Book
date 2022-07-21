@@ -5,3 +5,7 @@ import { recipeController } from '../controllers/recipeController';
 export const recipeRouter = express.Router();
 
 recipeRouter.get('/recipes', errorChecker(recipeController.getRecipes));
+recipeRouter.get(
+  '/recipes/:recipe_id',
+  errorChecker(recipeController.getRecipe)
+);
