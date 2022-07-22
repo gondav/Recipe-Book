@@ -17,5 +17,16 @@ export const recipeController = {
     const recipe = await recipeService.getRecipe(recipe_id);
 
     return res.status(200).json({ recipe: recipe });
+  },
+
+  async getDetailedRecipe(req: Request, res: Response, next: NextFunction) {
+    const recipe_id = parseInt(req.params.recipe_id);
+
+    if (isNaN(recipe_id) || recipe_id < 1) {
+      return next(badRequestError('Recipe id needs to be a positive integer'));
+    }
+    const detailedRecipe = await recipeService.getDetailedRecipe(recipe_id);
+
+    return res.status(200).json({ detailedRecipe });
   }
 };
