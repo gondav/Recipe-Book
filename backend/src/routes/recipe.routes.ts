@@ -9,3 +9,7 @@ recipeRouter.get(
   '/recipes/:recipe_id',
   errorChecker(recipeController.getRecipe)
 );
+recipeRouter.get(
+  '/recipes/details/:recipe_id',
+  errorChecker(recipeController.getDetailedRecipe)
+);
