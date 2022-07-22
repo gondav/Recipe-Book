@@ -13,3 +13,7 @@ recipeRouter.get(
   '/recipes/details/:recipe_id',
   errorChecker(recipeController.getDetailedRecipe)
 );
+recipeRouter.get(
+  '/recipes/category/:tag_name',
+  errorChecker(recipeController.getRecipesByTagName)
+);

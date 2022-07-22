@@ -22,5 +22,11 @@ export const recipeRepository = {
     const recipeDetails =
       'SELECT qty_amount, measurement_description, ingredient_name FROM recipe JOIN recipe_details ON recipe.recipe_id = recipe_details.recipe_id JOIN measurement_unit ON recipe_details.measurement_id = measurement_unit.measurement_id JOIN ingredient ON recipe_details.ingredient_id = ingredient.ingredient_id JOIN measurement_qty ON recipe_details.measurement_qty_id = measurement_qty.measurement_qty_id WHERE recipe.recipe_id = ?';
     return db.query(recipeDetails, [String(recipe_id)]);
+  },
+
+  getRecipesByTagName(tag_name: string): Promise<IRecipeDomainModel[]> {
+    const recipes =
+      'SELECT DISTINCT recipe.recipe_id, recipe_name, description, image_id FROM recipe JOIN recipe_details ON recipe.recipe_id = recipe_details.recipe_id JOIN recipe_tag ON recipe_details.recipe_tag_id = recipe_tag.tag_id WHERE tag = ?';
+    return db.query(recipes, [tag_name]);
   }
 };

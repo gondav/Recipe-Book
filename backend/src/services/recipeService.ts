@@ -26,5 +26,17 @@ export const recipeService = {
     );
 
     return { basicRecipeDetails, recipeIngredients };
+  },
+
+  async getRecipesByTagName(tag_name: string): Promise<IRecipeDomainModel[]> {
+    const recipes = await recipeRepository.getRecipesByTagName(tag_name);
+    console.log(recipes);
+
+    if (!recipes.length) {
+      return Promise.reject(
+        notFoundError(`Recipe with category name ${tag_name} was not found`)
+      );
+    }
+    return recipes;
   }
 };
