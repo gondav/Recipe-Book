@@ -28,5 +28,16 @@ export const recipeController = {
     const detailedRecipe = await recipeService.getDetailedRecipe(recipe_id);
 
     return res.status(200).json({ detailedRecipe });
+  },
+
+  async getRecipesByTagName(req: Request, res: Response, next: NextFunction) {
+    const { tag_name } = req.params;
+
+    if (!tag_name) {
+      return next(badRequestError('Please provide a recipe category'));
+    }
+    const recipes = await recipeService.getRecipesByTagName(tag_name);
+
+    return res.status(200).json({ recipesByCategory: recipes });
   }
 };
