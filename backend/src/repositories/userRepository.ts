@@ -1,6 +1,5 @@
 import { IUserDomainModel } from '../models/domainModels/IUserDomainModel';
 import { db } from '../data/connection';
-import { IGetUserDataModel } from '../models/dataModels/IGetUserDataModel';
 import { IRegisterUserDataModel } from 'src/models/dataModels/IRegisterUserDataModel';
 import { IDbResultDataModel } from 'src/models/dataModels/IDbResultDataModel';
 
@@ -11,9 +10,9 @@ export const userRepository = {
     ]);
   },
 
-  async getUserByEmail(email: string): Promise<IGetUserDataModel> {
-    return await db.query<IGetUserDataModel>(
-      'SELECT email, password FROM user WHERE email = ?',
+  async getUserByEmail(email: string): Promise<IUserDomainModel> {
+    return await db.query<IUserDomainModel>(
+      'SELECT * FROM user WHERE email = ?',
       [email]
     );
   },
