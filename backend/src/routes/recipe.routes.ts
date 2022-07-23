@@ -6,14 +6,14 @@ export const recipeRouter = express.Router();
 
 recipeRouter.get('/recipes', errorChecker(recipeController.getRecipes));
 recipeRouter.get(
-  '/recipes/:recipe_id',
+  '/recipes/:recipeId',
   errorChecker(recipeController.getRecipe)
 );
 recipeRouter.get(
-  '/recipes/details/:recipe_id',
+  '/recipes/details/:recipeId',
   errorChecker(recipeController.getDetailedRecipe)
 );
 recipeRouter.get(
-  '/recipes/category/:tag_name',
+  '/recipes/category/:tagName',
   errorChecker(recipeController.getRecipesByTagName)
 );

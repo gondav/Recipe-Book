@@ -8,8 +8,8 @@ export const recipeService = {
     return await recipeRepository.getRecipes();
   },
 
-  async getRecipe(recipe_id: number): Promise<IRecipeDomainModel> {
-    const recipe = await recipeRepository.getRecipe(recipe_id);
+  async getRecipe(recipeId: number): Promise<IRecipeDomainModel> {
+    const recipe = await recipeRepository.getRecipe(recipeId);
 
     if (!Object.keys(recipe).length) {
       return Promise.reject(notFoundError('Recipe was not found'));
@@ -18,23 +18,22 @@ export const recipeService = {
   },
 
   async getDetailedRecipe(
-    recipe_id: number
+    recipeId: number
   ): Promise<IDetailedRecipeDomainModel> {
-    const basicRecipeDetails = await this.getRecipe(recipe_id);
+    const basicRecipeDetails = await this.getRecipe(recipeId);
     const recipeIngredients = await recipeRepository.getRecipeIngredients(
-      recipe_id
+      recipeId
     );
 
     return { basicRecipeDetails, recipeIngredients };
   },
 
-  async getRecipesByTagName(tag_name: string): Promise<IRecipeDomainModel[]> {
-    const recipes = await recipeRepository.getRecipesByTagName(tag_name);
-    console.log(recipes);
+  async getRecipesByTagName(tagName: string): Promise<IRecipeDomainModel[]> {
+    const recipes = await recipeRepository.getRecipesByTagName(tagName);
 
     if (!recipes.length) {
       return Promise.reject(
-        notFoundError(`Recipe with category name ${tag_name} was not found`)
+        notFoundError(`Recipe with category name ${tagName} was not found`)
       );
     }
     return recipes;

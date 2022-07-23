@@ -9,34 +9,34 @@ export const recipeController = {
   },
 
   async getRecipe(req: Request, res: Response, next: NextFunction) {
-    const recipe_id = parseInt(req.params.recipe_id);
+    const recipeId = parseInt(req.params.recipeId);
 
-    if (isNaN(recipe_id) || recipe_id < 1) {
+    if (isNaN(recipeId) || recipeId < 1) {
       return next(badRequestError('Recipe id needs to be a positive integer'));
     }
-    const recipe = await recipeService.getRecipe(recipe_id);
+    const recipe = await recipeService.getRecipe(recipeId);
 
     return res.status(200).json({ recipe: recipe });
   },
 
   async getDetailedRecipe(req: Request, res: Response, next: NextFunction) {
-    const recipe_id = parseInt(req.params.recipe_id);
+    const recipeId = parseInt(req.params.recipeId);
 
-    if (isNaN(recipe_id) || recipe_id < 1) {
+    if (isNaN(recipeId) || recipeId < 1) {
       return next(badRequestError('Recipe id needs to be a positive integer'));
     }
-    const detailedRecipe = await recipeService.getDetailedRecipe(recipe_id);
+    const detailedRecipe = await recipeService.getDetailedRecipe(recipeId);
 
     return res.status(200).json({ detailedRecipe });
   },
 
   async getRecipesByTagName(req: Request, res: Response, next: NextFunction) {
-    const { tag_name } = req.params;
+    const { tagName } = req.params;
 
-    if (!tag_name) {
+    if (!tagName) {
       return next(badRequestError('Please provide a recipe category'));
     }
-    const recipes = await recipeService.getRecipesByTagName(tag_name);
+    const recipes = await recipeService.getRecipesByTagName(tagName);
 
     return res.status(200).json({ recipesByCategory: recipes });
   }
