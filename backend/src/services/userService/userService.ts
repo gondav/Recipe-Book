@@ -13,16 +13,16 @@ export const userService = {
   async getUserById(userId: number): Promise<IUserDomainModel> {
     const user = await userRepository.getUserById(userId);
 
-    if (!Object.keys(user).length) {
+    if (!user.length) {
       return Promise.reject(notFoundError('User does not exist'));
     }
-    return user;
+    return user[0];
   },
 
   async registerUser(newUser: IRegisterUserDataModel): Promise<void> {
     const registeredUser = await userRepository.getUserByEmail(newUser.email);
 
-    if (Object.keys(registeredUser).length) {
+    if (registeredUser.length) {
       return Promise.reject(
         conflictError(`User with email ${newUser.email} already exists`)
       );
@@ -45,14 +45,15 @@ export const userService = {
   ): Promise<void> {
     const registeredUser = await userRepository.getUserByEmail(email);
 
-    if (!Object.keys(registeredUser).length) {
+    if (!registeredUser.length) {
       return Promise.reject(
         notFoundError('User not found or account does not exist')
       );
     }
+    console.log(registeredUser);
     const isPasswordValid = await hashPasswordService.comparePassword(
       oldPassword,
-      registeredUser.password
+      registeredUser[0].password
     );
 
     if (!isPasswordValid) {
@@ -73,22 +74,22 @@ export const userService = {
   async loginUser(email: string, password: string): Promise<IUserDomainModel> {
     const user = await userRepository.getUserByEmail(email);
 
-    if (!Object.keys(user).length) {
+    if (!user.length) {
       return Promise.reject(
-        forbiddenError('You have entered an invalid username or password')
+        forbiddenError('You have entered an invalid email or password')
       );
     }
-    const isPasswordValid = hashPasswordService.comparePassword(
+    const isPasswordValid = await hashPasswordService.comparePassword(
       password,
-      user.password
+      user[0].password
     );
 
     if (!isPasswordValid) {
       return Promise.reject(
-        forbiddenError('You have entered an invalid username or password')
+        forbiddenError('You have entered an invalid email or password')
       );
     }
-    return user;
+    return user[0];
   },
 
   async deleteUser(userId: number): Promise<void> {
