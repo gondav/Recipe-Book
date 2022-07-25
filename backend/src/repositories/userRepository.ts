@@ -4,14 +4,15 @@ import { IRegisterUserDataModel } from 'src/models/dataModels/IRegisterUserDataM
 import { IDbResultDataModel } from 'src/models/dataModels/IDbResultDataModel';
 
 export const userRepository = {
-  async getUserById(userId: number): Promise<IUserDomainModel> {
-    return await db.query<IUserDomainModel>('SELECT * FROM user WHERE id = ?', [
-      String(userId)
-    ]);
+  async getUserById(userId: number): Promise<IUserDomainModel[]> {
+    return await db.query<IUserDomainModel[]>(
+      'SELECT * FROM user WHERE id = ?',
+      [String(userId)]
+    );
   },
 
-  async getUserByEmail(email: string): Promise<IUserDomainModel> {
-    return await db.query<IUserDomainModel>(
+  async getUserByEmail(email: string): Promise<IUserDomainModel[]> {
+    return await db.query<IUserDomainModel[]>(
       'SELECT * FROM user WHERE email = ?',
       [email]
     );
