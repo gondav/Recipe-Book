@@ -9,25 +9,25 @@ export const recipeController = {
   },
 
   async getRecipe(req: Request, res: Response, next: NextFunction) {
-    const recipeId = parseInt(req.params.recipeId);
+    const recipeId = Number(req.params.recipeId);
 
     if (isNaN(recipeId) || recipeId < 1) {
       return next(badRequestError('Recipe id needs to be a positive integer'));
     }
     const recipe = await recipeService.getRecipe(recipeId);
 
-    return res.status(200).json({ recipe: recipe });
+    res.status(200).json({ recipe });
   },
 
   async getDetailedRecipe(req: Request, res: Response, next: NextFunction) {
-    const recipeId = parseInt(req.params.recipeId);
+    const recipeId = Number(req.params.recipeId);
 
     if (isNaN(recipeId) || recipeId < 1) {
       return next(badRequestError('Recipe id needs to be a positive integer'));
     }
     const detailedRecipe = await recipeService.getDetailedRecipe(recipeId);
 
-    return res.status(200).json({ detailedRecipe });
+    res.status(200).json({ detailedRecipe });
   },
 
   async getRecipesByTagName(req: Request, res: Response, next: NextFunction) {
@@ -38,6 +38,6 @@ export const recipeController = {
     }
     const recipes = await recipeService.getRecipesByTagName(tagName);
 
-    return res.status(200).json({ recipesByCategory: recipes });
+    res.status(200).json({ recipesByCategory: recipes });
   }
 };
