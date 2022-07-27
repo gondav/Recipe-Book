@@ -10,7 +10,7 @@ const generalError =
   };
 
 export const badRequestError = generalError(400);
-export const forbiddenError = generalError(403);
+export const unauthorizedError = generalError(401);
 export const notFoundError = generalError(404);
 export const notAcceptableError = generalError(406);
 export const conflictError = generalError(409);
