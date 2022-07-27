@@ -1,4 +1,5 @@
 import { Request, Response, NextFunction } from 'express';
+import { jwtService } from '../services/jwtService/jwt.service';
 import {
   badRequestError,
   notAcceptableError
@@ -79,12 +80,17 @@ export const userController = {
     }
 
     const user = await userService.loginUser(email, password);
+    const accessToken = await jwtService.generateAccessToken(
+      user.id,
+      user.email
+    );
 
     res.status(200).json({
       id: user.id,
       firstName: user.first_name,
       lastName: user.last_name,
-      email: user.email
+      email: user.email,
+      accessToken
     });
   },
 
