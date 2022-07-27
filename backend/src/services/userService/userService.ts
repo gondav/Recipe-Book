@@ -3,7 +3,7 @@ import { IUserDomainModel } from '../../models/domainModels/IUserDomainModel';
 import { userRepository } from '../../repositories/userRepository';
 import {
   conflictError,
-  forbiddenError,
+  unauthorizedError,
   notFoundError,
   serverError
 } from '../errorCreatorService';
@@ -58,7 +58,7 @@ export const userService = {
 
     if (!isPasswordValid) {
       Promise.reject(
-        forbiddenError('You have entered an invalid username or password')
+        unauthorizedError('You have entered an invalid username or password')
       );
     }
     const password = await hashPasswordService.generateHashedPassword(
@@ -76,7 +76,7 @@ export const userService = {
 
     if (!user.length) {
       return Promise.reject(
-        forbiddenError('You have entered an invalid email or password')
+        unauthorizedError('You have entered an invalid email or password')
       );
     }
     const isPasswordValid = await hashPasswordService.comparePassword(
@@ -86,7 +86,7 @@ export const userService = {
 
     if (!isPasswordValid) {
       return Promise.reject(
-        forbiddenError('You have entered an invalid email or password')
+        unauthorizedError('You have entered an invalid email or password')
       );
     }
     return user[0];

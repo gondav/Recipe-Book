@@ -11,5 +11,8 @@ export default {
   },
   bcrypt: {
     numberOfSaltRounds: 12
+  },
+  jwt: {
+    secretKey: process.env.JWT_ACCESS_TOKEN
   }
 };
