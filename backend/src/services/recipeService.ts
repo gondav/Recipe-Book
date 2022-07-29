@@ -11,10 +11,10 @@ export const recipeService = {
   async getRecipe(recipeId: number): Promise<IRecipeDomainModel> {
     const recipe = await recipeRepository.getRecipe(recipeId);
 
-    if (!Object.keys(recipe).length) {
+    if (!recipe.length) {
       return Promise.reject(notFoundError('Recipe was not found'));
     }
-    return recipe;
+    return recipe[0];
   },
 
   async getDetailedRecipe(
