@@ -2,11 +2,12 @@ import jwt from 'jsonwebtoken';
 import config from '../../config';
 import { Request } from 'express';
 import { serverError } from '../errorCreatorService';
+import { IPayload } from '../../models/IPayload';
 
 export const jwtService = {
   async generateAccessToken(id: number, email: string): Promise<string> {
     return new Promise((resolve, reject) => {
-      const payload = {
+      const payload: IPayload = {
         id,
         email
       };
