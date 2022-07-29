@@ -87,8 +87,8 @@ export const userController = {
 
     res.status(200).json({
       id: user.id,
-      firstName: user.first_name,
-      lastName: user.last_name,
+      firstName: user.firstName,
+      lastName: user.lastName,
       email: user.email,
       accessToken
     });

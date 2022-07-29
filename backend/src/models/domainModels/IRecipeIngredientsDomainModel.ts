@@ -1,5 +1,5 @@
 export interface IRecipeIngredientsDomainModel {
-  measurement_description: string;
-  ingredient_name: string;
-  qty_amount: number;
+  measurementDescription: string;
+  ingredientName: string;
+  qtyAmount: number;
 }

@@ -1,7 +1,7 @@
 export interface IRecipeDomainModel {
-  recipe_id: number;
-  recipe_name: string;
+  recipeId: number;
+  recipeName: string;
   description: string;
-  image_id: string;
+  imageId: string;
   instruction: string;
 }
