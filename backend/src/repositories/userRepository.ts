@@ -6,7 +6,7 @@ import { IDbResultDataModel } from 'src/models/dataModels/IDbResultDataModel';
 export const userRepository = {
   async getUserById(userId: number): Promise<IUserDomainModel[]> {
     return await db.query<IUserDomainModel[]>(
-      'SELECT * FROM user WHERE id = ?',
+      'SELECT id, first_name as firstName, last_name as lastName, email, password FROM user WHERE id = ?',
       [String(userId)]
     );
   },
