@@ -1,4 +1,5 @@
-import { IDbResultDataModel } from 'src/models/dataModels/IDbResultDataModel';
+import { IDbResultDataModel } from '../models/dataModels/IDbResultDataModel';
+import { ISavedRecipeDataModel } from '../models/dataModels/ISavedRecipeDataModel';
 import { db } from '../data/connection';
 import { IRecipeDomainModel } from '../models/domainModels/IRecipeDomainModel';
 
@@ -11,6 +12,16 @@ export const savedRecipeRepository = {
       JOIN user ON saved_recipe.user_id = user.id
       WHERE user.id = ?`,
       [String(userId)]
+    );
+  },
+
+  getSavedRecipeId(
+    userId: number,
+    recipeId: number
+  ): Promise<ISavedRecipeDataModel[]> {
+    return db.query(
+      `SELECT id FROM saved_recipe WHERE user_id = ? AND recipe_id = ?`,
+      [String(userId), String(recipeId)]
     );
   },
 
