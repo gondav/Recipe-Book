@@ -13,6 +13,7 @@ export default {
     numberOfSaltRounds: 12
   },
   jwt: {
-    secretKey: process.env.JWT_ACCESS_TOKEN
+    secretKey: process.env.JWT_ACCESS_TOKEN,
+    expiresIn: '60m'
   }
 };
