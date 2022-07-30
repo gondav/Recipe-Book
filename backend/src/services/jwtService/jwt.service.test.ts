@@ -1,7 +1,7 @@
 import { Request } from 'express';
 import { jwtService } from './jwt.service';
 
-describe.only('getTokenFromRequest', () => {
+describe('getTokenFromRequest', () => {
   it('should return token', async () => {
     // Arrange
     const request = {

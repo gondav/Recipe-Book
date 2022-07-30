@@ -40,11 +40,6 @@ export const savedRecipeService = {
   },
 
   async removeSavedRecipe(savedRecipeId: number): Promise<void> {
-    const savedRecipe = await userRepository.getUserById(savedRecipeId);
-
-    if (!savedRecipe.length) {
-      return Promise.reject(notFoundError(`Cannot find saved recipe`));
-    }
     const result = await savedRecipeRepository.removeSavedRecipe(savedRecipeId);
 
     if (result.affectedRows < 1) {
