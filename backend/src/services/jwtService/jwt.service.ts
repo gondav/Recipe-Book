@@ -12,7 +12,7 @@ export const jwtService = {
         email
       };
       const secretKey = config.jwt.secretKey;
-      const options = { expiresIn: '30m' };
+      const options = { expiresIn: config.jwt.expiresIn };
 
       jwt.sign(payload, secretKey as string, options, (err, token) => {
         if (err || !token) {
