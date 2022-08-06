@@ -1,0 +1,59 @@
+<header>
+  <nav class="flex-column">
+    <div class="nav-sub flex-align-center">
+      <ul class="nav-sub-wrapper flex-align-center">
+        <li><a>My Recipes</a></li>
+        <li><a>Shopping List</a></li>
+        <li><a>My Profile</a></li>
+        <li><a>Sign In</a></li>
+      </ul>
+    </div>
+
+    <div class="nav-main flex-align-center">
+      <div class="logo-wrapper">
+        <img src="../../../assets/logo.svg" alt="Logo" srcset="" />
+      </div>
+
+      <div class="hamburger-menu">
+        <i class="fa-solid fa-bars" (click)="toggleMobMenu(mobMenu)"></i>
+      </div>
+
+      <ul class="nav-main-wrapper flex-align-center">
+        <li (mouseover)="openSubMenu()" (mouseleave)="closeSubMenu()">
+          <a>Recipes + </a>
+          <ul class="sub-menu" [@subMenuState]="state">
+            <li><a>Browse All Recipes</a></li>
+            <li><a>Recipes By Course</a></li>
+            <li><a>Recipes By Ingredient</a></li>
+          </ul>
+        </li>
+        <li><a>Breakfast</a></li>
+        <li><a>Dinner</a></li>
+        <li><a>Salad</a></li>
+      </ul>
+    </div>
+  </nav>
+  <div class="header-section flex-center">
+    <h2>Welcome To FoodBlings</h2>
+  </div>
+
+  <div class="mob-menu-wrapper" #mobMenu>
+    <ul class="mob-menu">
+      <li><a>Sign In</a></li>
+      <li><a>My Profile</a></li>
+      <li><a>My Recipes</a></li>
+      <li><a>Shopping List</a></li>
+      <li (click)="toggleSubMenu()">
+        <a>Recipes + </a>
+        <ul class="sub-menu" [@subMenuState]="state">
+          <li><a>Browse All Recipes</a></li>
+          <li><a>Recipes By Course</a></li>
+          <li><a>Recipes By Ingredient</a></li>
+        </ul>
+      </li>
+      <li><a>Breakfast</a></li>
+      <li><a>Dinner</a></li>
+      <li><a>Salad</a></li>
+    </ul>
+  </div>
+</header>
