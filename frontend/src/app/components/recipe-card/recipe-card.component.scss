@@ -1,9 +1,10 @@
 @import "../../../styles/config.scss";
 
 .card-wrapper {
-  width: 310px;
+  width: 320px;
   text-align: center;
   transition: box-shadow 300ms ease-in-out;
+  margin: 8px;
 
   &:hover {
     cursor: pointer;
@@ -13,7 +14,7 @@
   }
 
   .img-container {
-    height: 310px;
+    height: 320px;
     background-image: url("https://images.unsplash.com/photo-1546069901-ba9599a7e63c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80");
     background-position: center;
     background-repeat: no-repeat;
@@ -65,10 +66,10 @@
 
 @media screen and (max-width: 800px) {
   .card-wrapper {
-    width: 250px;
+    width: 280px;
 
     .img-container {
-      height: 250px;
+      height: 280px;
     }
 
     .label p {
