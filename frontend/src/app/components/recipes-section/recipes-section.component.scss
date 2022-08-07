@@ -1,0 +1,51 @@
+@import "../../../styles/config.scss";
+
+.container {
+  max-width: $max-width;
+  margin: auto;
+
+  .divider {
+    text-align: center;
+    padding: 1.6rem 0 1.2rem 0;
+
+    span {
+      background-color: #fff;
+      padding: 0 15px;
+      color: $color-light-black;
+      text-transform: uppercase;
+      font-weight: 700;
+    }
+
+    &::after {
+      content: "";
+      display: block;
+      max-width: $max-width;
+      height: 1px;
+      background-color: $color-light-black;
+      margin-top: -10px;
+    }
+  }
+
+  section.recipe-list-wrapper {
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    max-width: $max-width;
+    margin: auto;
+  }
+
+  .recipe-browser {
+    text-align: center;
+    margin-top: 0.8rem;
+
+    a {
+      font-size: $font-size-m;
+      text-transform: uppercase;
+      letter-spacing: 0.1rem;
+      color: $color-light-black;
+
+      &:hover {
+        cursor: pointer;
+      }
+    }
+  }
+}

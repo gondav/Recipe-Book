@@ -78,6 +78,7 @@ header {
       url("../../../assets/header-cover.jpg");
     background-position: center;
     background-repeat: no-repeat;
+    background-attachment: fixed;
 
     h2 {
       color: $color-secondary;
