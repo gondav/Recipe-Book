@@ -7,9 +7,10 @@ import { HeaderComponent } from './components/header/header.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { RecipeCardComponent } from './components/recipe-card/recipe-card.component';
+import { RecipesSectionComponent } from './components/recipes-section/recipes-section.component';
 
 @NgModule({
-  declarations: [AppComponent, HeaderComponent, RecipeCardComponent],
+  declarations: [AppComponent, HeaderComponent, RecipeCardComponent, RecipesSectionComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
