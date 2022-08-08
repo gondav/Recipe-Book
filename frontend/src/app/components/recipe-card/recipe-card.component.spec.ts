@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { BackgroundImgUrlPipe } from 'src/app/pipes/background-img-url.pipe';
 
 import { RecipeCardComponent } from './recipe-card.component';
 
@@ -8,15 +9,13 @@ describe('RecipeCardComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ RecipeCardComponent ]
-    })
-    .compileComponents();
+      declarations: [RecipeCardComponent, BackgroundImgUrlPipe],
+    }).compileComponents();
   });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(RecipeCardComponent);
     component = fixture.componentInstance;
-    fixture.detectChanges();
   });
 
   it('should create', () => {
