@@ -1,5 +1,8 @@
 <div class="card-wrapper flex-column">
-  <div class="img-container">
+  <div
+    class="img-container"
+    [ngStyle]="{ 'background-image': recipe.imageId | backgroundImgUrl }"
+  >
     <span class="circle">
       <i class="fa-solid fa-cart-shopping"></i>
     </span>
@@ -8,13 +11,14 @@
     </span>
   </div>
   <div class="label">
-    <p>Summer Salad</p>
+    <p>
+      {{ recipe.recipeName | titlecase }}
+    </p>
   </div>
   <div class="description-container">
     <p>
-      Lorem ipsum, dolor sit amet consectetur ipisicing elit. Aspernatur libero,
-      mollitia voluptates xpedita quaerat optio, quam accusantium illum quo
-      nisi, aperiam consectetur asperiores.
+      {{ recipe.description | slice: 0:100 }}
+      <span *ngIf="recipe.description.length > 100">...</span>
     </p>
   </div>
 </div>
