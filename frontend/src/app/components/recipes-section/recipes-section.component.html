@@ -2,12 +2,11 @@
   <div class="divider">
     <span>Latest Recipes</span>
   </div>
-  <section class="recipe-list-wrapper flex-align-center">
-    <app-recipe-card></app-recipe-card>
-    <app-recipe-card></app-recipe-card>
-    <app-recipe-card></app-recipe-card>
-    <app-recipe-card></app-recipe-card>
-    <app-recipe-card></app-recipe-card>
+  <section class="recipe-list-wrapper">
+    <app-recipe-card
+      *ngFor="let recipe of recipes"
+      [recipe]="recipe"
+    ></app-recipe-card>
   </section>
   <div class="recipe-browser">
     <a
