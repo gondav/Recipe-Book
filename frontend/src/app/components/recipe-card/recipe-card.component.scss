@@ -1,7 +1,10 @@
 @import "../../../styles/config.scss";
 
+$card-img-size-normal: 320px;
+$card-img-size-small: 280px;
+
 .card-wrapper {
-  width: 320px;
+  width: $card-img-size-normal;
   text-align: center;
   transition: box-shadow 300ms ease-in-out;
   margin: 8px;
@@ -14,8 +17,7 @@
   }
 
   .img-container {
-    height: 320px;
-    background-image: url("https://images.unsplash.com/photo-1546069901-ba9599a7e63c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80");
+    height: $card-img-size-normal;
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -43,6 +45,7 @@
 
   .label {
     position: relative;
+    width: $card-img-size-small;
     top: -1.5rem;
     margin: auto;
     background-color: $color-light-black-transparent;
@@ -50,7 +53,7 @@
 
     p {
       color: #fff;
-      margin: 1rem 1.8rem;
+      margin: 1rem 0.8rem;
     }
   }
 
@@ -66,14 +69,17 @@
 
 @media screen and (max-width: 800px) {
   .card-wrapper {
-    width: 280px;
+    width: $card-img-size-small;
 
     .img-container {
-      height: 280px;
+      height: $card-img-size-small;
     }
 
-    .label p {
-      font-size: $font-size-m;
+    .label {
+      width: $card-img-size-small - 40px;
+      p {
+        font-size: $font-size-m;
+      }
     }
 
     .description-container p {

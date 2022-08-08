@@ -13,7 +13,7 @@ import { Observable, retry, catchError, throwError } from 'rxjs';
 export class BaseHttpService {
   private baseURL = environment.baseURL;
 
-  protected httpOptions = {
+  private httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',
     }),
@@ -21,9 +21,9 @@ export class BaseHttpService {
 
   constructor(private http: HttpClient) {}
 
-  getItems<T>(endpoint: string): Observable<T[]> {
+  getItems<T>(endpoint: string): Observable<T> {
     return this.http
-      .get<T[]>(`${this.baseURL}/${endpoint}`, this.httpOptions)
+      .get<T>(`${this.baseURL}/${endpoint}`, this.httpOptions)
       .pipe(retry(2), catchError(this.handleError));
   }
 

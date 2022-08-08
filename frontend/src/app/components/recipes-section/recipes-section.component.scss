@@ -27,7 +27,9 @@
   }
 
   section.recipe-list-wrapper {
+    display: flex;
     flex-wrap: wrap;
+    align-items: flex-start;
     justify-content: space-evenly;
     max-width: $max-width;
     margin: auto;
@@ -35,7 +37,7 @@
 
   .recipe-browser {
     text-align: center;
-    margin-top: 0.8rem;
+    margin: 0.8rem 0 3rem 0;
 
     a {
       font-size: $font-size-m;
