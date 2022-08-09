@@ -10,9 +10,11 @@ import { RecipeCardComponent } from './components/recipe-card/recipe-card.compon
 import { RecipesSectionComponent } from './components/recipes-section/recipes-section.component';
 import { LandingPageComponent } from './components/landing-page/landing-page.component';
 import { BackgroundImgUrlPipe } from './pipes/background-img-url.pipe';
+import { AuthenticationPageComponent } from './components/authentication/authentication-page/authentication-page.component';
+import { LoginFormComponent } from './components/authentication/login-form/login-form.component';
 
 @NgModule({
-  declarations: [AppComponent, HeaderComponent, RecipeCardComponent, RecipesSectionComponent, LandingPageComponent, BackgroundImgUrlPipe],
+  declarations: [AppComponent, HeaderComponent, RecipeCardComponent, RecipesSectionComponent, LandingPageComponent, BackgroundImgUrlPipe, AuthenticationPageComponent, LoginFormComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
