@@ -6,6 +6,7 @@ import {
   trigger,
 } from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -22,10 +23,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
   state = 'start';
+  isLandingPage: boolean = false;
 
-  constructor() {}
+  constructor(private router: Router, private route: ActivatedRoute) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.route.url.subscribe({
+      next: (url) => (this.isLandingPage = url[0].path === 'recipes'),
+      error: (error) => console.log(error),
+    });
+  }
 
   openSubMenu(): void {
     this.state = 'end';
@@ -43,5 +50,9 @@ export class HeaderComponent implements OnInit {
     mobMenu.style.display === 'block'
       ? (mobMenu.style.display = 'none')
       : (mobMenu.style.display = 'block');
+  }
+
+  loadLandingPage(): void {
+    this.router.navigate(['/recipes']);
   }
 }
