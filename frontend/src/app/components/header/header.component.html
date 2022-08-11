@@ -5,13 +5,18 @@
         <li><a>My Recipes</a></li>
         <li><a>Shopping List</a></li>
         <li><a>My Profile</a></li>
-        <li><a>Sign In</a></li>
+        <li><a routerLink="/login">Sign In</a></li>
       </ul>
     </div>
 
     <div class="nav-main flex-align-center">
       <div class="logo-wrapper">
-        <img src="../../../assets/logo.svg" alt="Logo" srcset="" />
+        <img
+          (click)="loadLandingPage()"
+          src="../../../assets/logo.svg"
+          alt="Logo"
+          srcset=""
+        />
       </div>
 
       <div class="hamburger-menu">
@@ -33,13 +38,13 @@
       </ul>
     </div>
   </nav>
-  <div class="header-section flex-center">
+  <div *ngIf="isLandingPage" class="header-section flex-center">
     <h2>Welcome To FoodBlings</h2>
   </div>
 
   <div class="mob-menu-wrapper" #mobMenu>
     <ul class="mob-menu">
-      <li><a>Sign In</a></li>
+      <li><a routerLink="/login">Sign In</a></li>
       <li><a>My Profile</a></li>
       <li><a>My Recipes</a></li>
       <li><a>Shopping List</a></li>

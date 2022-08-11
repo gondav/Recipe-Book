@@ -1,7 +1,7 @@
 @import "../../../styles/config.scss";
 
-$card-img-size-normal: 320px;
-$card-img-size-small: 280px;
+$card-img-size-normal: 280px;
+$card-img-size-small: 260px;
 
 .card-wrapper {
   width: $card-img-size-normal;
@@ -45,7 +45,7 @@ $card-img-size-small: 280px;
 
   .label {
     position: relative;
-    width: $card-img-size-small;
+    width: $card-img-size-small - 20px;
     top: -1.5rem;
     margin: auto;
     background-color: $color-light-black-transparent;
@@ -53,7 +53,8 @@ $card-img-size-small: 280px;
 
     p {
       color: #fff;
-      margin: 1rem 0.8rem;
+      margin: 1rem 0.2rem;
+      font-size: $font-size-m;
     }
   }
 
