@@ -10,6 +10,7 @@ header {
 
     .nav-sub-wrapper {
       margin-right: 5vw;
+      padding: 0;
       background-color: $color-secondary;
 
       & li:hover {
@@ -29,7 +30,7 @@ header {
     max-height: 100px;
 
     .logo-wrapper img {
-      width: 100px;
+      width: 90px;
       margin-left: 25px;
 
       &:hover {
@@ -123,7 +124,7 @@ header {
   .hamburger-menu {
     display: block !important;
     margin-right: 25px;
-    font-size: 32px;
+    font-size: 26px;
     color: $color-light-black;
 
     i.fa-solid {
