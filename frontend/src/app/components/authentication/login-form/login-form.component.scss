@@ -1,0 +1,86 @@
+@import "../../../../styles/config.scss";
+
+$input-width: 240px;
+$margin-bottom: 1.2em;
+
+.form-container {
+  align-items: center;
+  background-color: $color-light-grey-transparent;
+  padding: 16px 8px;
+  color: $color-light-black;
+
+  .icon-wrapper span {
+    display: inline-flex;
+    background-color: $color-secondary;
+    color: #fff;
+    padding: 12px;
+    margin-bottom: $margin-bottom;
+    border-radius: 500px;
+  }
+
+  h3 {
+    font-size: $font-size-l;
+    font-weight: 700;
+    margin-bottom: $margin-bottom;
+  }
+
+  .btn,
+  input {
+    width: $input-width;
+    font-size: $font-size-m;
+  }
+
+  .btn-fb {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    background-color: $color-facebook-blue;
+    color: #fff;
+    margin-bottom: $margin-bottom;
+    font-size: $font-size-m;
+
+    .fa-facebook {
+      font-size: 1.2rem;
+    }
+  }
+
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: $margin-bottom;
+
+    .help-block {
+      font-size: $font-size-s;
+      color: #ff3333;
+    }
+  }
+
+  .btn-group {
+    display: flex;
+    flex-direction: column;
+
+    button {
+      font-weight: 500;
+      font-size: $font-size-s;
+    }
+
+    button.secondary-fill {
+      background-color: $color-secondary;
+      color: #fff;
+      border-radius: 5px;
+    }
+
+    span a {
+      display: inline-block;
+      font-size: $font-size-s;
+      margin-bottom: $margin-bottom;
+    }
+
+    button.secondary-border {
+      border: 1px solid $color-secondary;
+      border-radius: 5px;
+      color: $color-light-black;
+      margin-bottom: $margin-bottom;
+    }
+  }
+}
