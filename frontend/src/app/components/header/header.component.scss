@@ -15,11 +15,15 @@ header {
 
       & li:hover {
         cursor: pointer;
-        color: #fff;
       }
 
       a {
         font-size: $font-size-s;
+        transition: color 300ms ease-in-out;
+
+        &:hover {
+          color: #fff;
+        }
       }
     }
   }
@@ -95,17 +99,20 @@ header {
     list-style-type: none;
     font-weight: 700;
     color: $color-light-black;
-    transition: color 400ms;
 
     &:hover {
       cursor: pointer;
-      color: $color-secondary;
     }
 
     a {
       margin: 8px 16px;
       color: $color-light-black;
       font-size: $font-size-m;
+      transition: color 300ms ease-in-out;
+
+      &:hover {
+        color: $color-secondary;
+      }
     }
   }
 }

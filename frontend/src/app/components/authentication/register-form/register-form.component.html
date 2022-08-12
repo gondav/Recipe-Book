@@ -1,0 +1,91 @@
+<div class="form-container flex-column">
+  <div class="icon-wrapper">
+    <span>
+      <i class="fa-solid fa-bowl-food"></i>
+    </span>
+  </div>
+  <h3>Sign Up</h3>
+  <button class="btn btn-fb">
+    <span><i class="fa-brands fa-facebook-f"></i></span>
+    <span>Sign in with Facebook</span>
+  </button>
+  <h3>OR</h3>
+  <form [formGroup]="registerForm">
+    <div class="input-group flex-column">
+      <div class="form-group">
+        <input
+          formControlName="firstName"
+          [ngClass]="{ 'is-valid': registerForm.get('firstName')?.valid }"
+          [ngClass]="{
+            'is-invalid':
+              !registerForm.get('firstName')?.valid &&
+              registerForm.get('firstName')?.touched
+          }"
+          class="form-control"
+          placeholder="First Name"
+        />
+      </div>
+      <div class="form-group">
+        <input
+          formControlName="lastName"
+          [ngClass]="{ 'is-valid': registerForm.get('lastName')?.valid }"
+          [ngClass]="{
+            'is-invalid':
+              !registerForm.get('lastName')?.valid &&
+              registerForm.get('lastName')?.touched
+          }"
+          class="form-control"
+          placeholder="Last Name"
+        />
+      </div>
+      <div class="form-group">
+        <input
+          formControlName="email"
+          [ngClass]="{ 'is-valid': registerForm.get('email')?.valid }"
+          [ngClass]="{
+            'is-invalid':
+              !registerForm.get('email')?.valid &&
+              registerForm.get('email')?.touched
+          }"
+          type="email"
+          class="form-control"
+          placeholder="Enter email"
+        />
+      </div>
+      <div class="form-group">
+        <input
+          formControlName="password"
+          [ngClass]="{ 'is-valid': registerForm.get('password')?.valid }"
+          [ngClass]="{
+            'is-invalid':
+              !registerForm.get('password')?.valid &&
+              registerForm.get('password')?.touched
+          }"
+          type="password"
+          class="form-control"
+          placeholder="Password"
+        />
+        <span
+          class="help-block"
+          *ngIf="
+            !registerForm.get('password')?.valid &&
+            registerForm.get('password')?.dirty
+          "
+          >*Password must be at least 6 characters long and contain a letter and
+          number</span
+        >
+      </div>
+    </div>
+    <div class="btn-group">
+      <button
+        class="btn secondary-fill"
+        (click)="submitRegister()"
+        [disabled]="!registerForm.valid"
+      >
+        Sign Up
+      </button>
+      <span><a>Already have an account?</a></span>
+      <button class="btn secondary-border" routerLink="/login">Sign in</button>
+    </div>
+  </form>
+</div>
