@@ -5,7 +5,7 @@
     </span>
   </div>
   <h3>Sign Up</h3>
-  <button class="btn btn-fb">
+  <button class="btn btn-fb" disabled="true">
     <span><i class="fa-brands fa-facebook-f"></i></span>
     <span>Sign in with Facebook</span>
   </button>
@@ -79,7 +79,7 @@
     <div class="btn-group">
       <button
         class="btn secondary-fill"
-        (click)="submitRegister()"
+        (click)="submitRegistration()"
         [disabled]="!registerForm.valid"
       >
         Sign Up

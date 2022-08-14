@@ -5,7 +5,12 @@
         <li><a>My Recipes</a></li>
         <li><a>Shopping List</a></li>
         <li><a>My Profile</a></li>
-        <li><a routerLink="/login">Sign In</a></li>
+        <li *ngIf="!isUserLoggedIn">
+          <a routerLink="/login"> Sign In </a>
+        </li>
+        <li *ngIf="isUserLoggedIn">
+          <a (click)="logOutUser()">Sign Out</a>
+        </li>
       </ul>
     </div>
 
@@ -44,7 +49,12 @@
 
   <div class="mob-menu-wrapper" #mobMenu>
     <ul class="mob-menu">
-      <li><a routerLink="/login">Sign In</a></li>
+      <li *ngIf="!isUserLoggedIn">
+        <a (click)="toggleMobMenu(mobMenu)" routerLink="/login">Sign In</a>
+      </li>
+      <li *ngIf="isUserLoggedIn">
+        <a (click)="logOutUser(); toggleMobMenu(mobMenu)">Sign Out</a>
+      </li>
       <li><a>My Profile</a></li>
       <li><a>My Recipes</a></li>
       <li><a>Shopping List</a></li>

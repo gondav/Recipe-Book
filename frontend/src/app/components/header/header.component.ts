@@ -7,6 +7,7 @@ import {
 } from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { AuthService } from '../../services/auth-service/auth.service';
 
 @Component({
   selector: 'app-header',
@@ -23,15 +24,22 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class HeaderComponent implements OnInit {
   state = 'start';
-  isLandingPage: boolean = false;
+  isLandingPage = false;
+  isUserLoggedIn: boolean;
 
-  constructor(private router: Router, private route: ActivatedRoute) {}
+  constructor(
+    private router: Router,
+    private route: ActivatedRoute,
+    private authService: AuthService
+  ) {}
 
   ngOnInit(): void {
     this.route.url.subscribe({
       next: (url) => (this.isLandingPage = url[0].path === 'recipes'),
       error: (error) => console.log(error),
     });
+
+    this.isUserLoggedIn = this.authService.isLoggedIn();
   }
 
   openSubMenu(): void {
@@ -53,6 +61,12 @@ export class HeaderComponent implements OnInit {
   }
 
   loadLandingPage(): void {
+    this.router.navigate(['/recipes']);
+  }
+
+  logOutUser(): void {
+    this.authService.logOutUser();
+    this.isUserLoggedIn = false;
     this.router.navigate(['/recipes']);
   }
 }
