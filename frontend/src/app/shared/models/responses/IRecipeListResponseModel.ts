@@ -1,4 +1,4 @@
-import { IRecipeViewModel } from './viewmodels/IRecipeViewModel';
+import { IRecipeViewModel } from '../viewmodels/IRecipeViewModel';
 
 export interface IRecipeListResponseModel {
   recipeList: IRecipeViewModel[];
