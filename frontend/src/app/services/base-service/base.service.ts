@@ -33,7 +33,7 @@ export class BaseHttpService {
       .pipe(retry(2), catchError(this.handleError));
   }
 
-  createItem<T>(endpoint: string, item: T): Observable<T> {
+  createItem<T>(endpoint: string, item: any): Observable<T> {
     return this.http
       .post<T>(`${this.baseURL}/${endpoint}`, item, this.httpOptions)
       .pipe(retry(2), catchError(this.handleError));
@@ -55,7 +55,7 @@ export class BaseHttpService {
     const errorMsg =
       error.error instanceof ErrorEvent
         ? error.error.message
-        : { status: error.status, message: error.message };
+        : { status: error.status, message: error.error };
 
     return throwError(() => errorMsg);
   }
