@@ -1,6 +1,10 @@
 import { Request, Response, NextFunction } from 'express';
 import { savedRecipeService } from '../../services/savedRecipeService/savedRecipeService';
-import { badRequestError } from '../../services/errorCreatorService';
+import {
+  badRequestError,
+  unauthorizedError
+} from '../../services/errorCreatorService';
+import { jwtService } from '../../services/jwtService/jwt.service';
 
 export const savedRecipeController = {
   async getSavedRecipesByUserId(
@@ -9,9 +13,14 @@ export const savedRecipeController = {
     next: NextFunction
   ) {
     const userId = Number(req.params.userId);
+    const userIdFromTokenPayload = jwtService.getUserIdFromTokenPayload(req);
 
     if (!userId || isNaN(userId) || userId < 1) {
       return next(badRequestError('User id needs to be a positive integer'));
+    }
+
+    if (userId !== userIdFromTokenPayload) {
+      return next(unauthorizedError('Not Authorized'));
     }
     const recipes = await savedRecipeService.getSavedRecipesByUserId(userId);
 
