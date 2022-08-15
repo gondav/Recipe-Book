@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
@@ -14,6 +14,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { BackgroundImgUrlPipe } from './pipes/background-img-url.pipe';
 import { RegisterFormComponent } from './components/authentication/register-form/register-form.component';
 import { AuthenticationPageComponent } from './components/authentication/authentication-page.component';
+import { TokenInterceptor } from './interceptors/tokenInterceptor/token.interceptor';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,9 @@ import { AuthenticationPageComponent } from './components/authentication/authent
     HttpClientModule,
     ReactiveFormsModule,
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
