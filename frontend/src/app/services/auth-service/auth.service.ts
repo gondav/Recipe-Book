@@ -46,7 +46,6 @@ export class AuthService {
 
   private getTokenExpirationDuration(): void {
     const currTime = new Date().getTime();
-    console.log('currTime:', currTime);
     this.tokenExpirationDuration = this.tokenExpirationDate - +currTime;
   }
 
