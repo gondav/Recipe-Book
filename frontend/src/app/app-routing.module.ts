@@ -3,11 +3,16 @@ import { RouterModule, Routes } from '@angular/router';
 import { AuthenticationPageComponent } from './components/authentication/authentication-page.component';
 import { LandingPageComponent } from './components/landing-page/landing-page.component';
 import { SavedRecipesComponent } from './components/saved-recipes/saved-recipes.component';
+import { AuthGuard } from './services/authGuard/auth.guard';
 
 const routes: Routes = [
   { path: '', redirectTo: 'recipes', pathMatch: 'full' },
   { path: 'recipes', component: LandingPageComponent },
-  { path: 'saved-recipes', component: SavedRecipesComponent },
+  {
+    path: 'saved-recipes',
+    component: SavedRecipesComponent,
+    canActivate: [AuthGuard],
+  },
   { path: 'login', component: AuthenticationPageComponent },
   { path: 'register', component: AuthenticationPageComponent },
 ];
