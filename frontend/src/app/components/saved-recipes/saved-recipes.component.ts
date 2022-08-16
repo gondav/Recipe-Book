@@ -12,13 +12,13 @@ export class SavedRecipesComponent implements OnInit {
   sectionTitle: string = 'SAVED RECIPES';
   userId = 0;
 
-  constructor(private recipeService: RecipeService) {
+  constructor(private recipeService: RecipeService) {}
+
+  ngOnInit(): void {
     this.recipeService.getSavedRecipes().subscribe({
       next: (recipes) => {
         this.recipes = recipes;
       },
     });
   }
-
-  ngOnInit(): void {}
 }
