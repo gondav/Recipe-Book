@@ -7,7 +7,7 @@ import { IRecipeViewModel } from '../../shared/models/viewmodels/IRecipeViewMode
   styleUrls: ['./recipes-section.component.scss'],
 })
 export class RecipesSectionComponent implements OnInit {
-  @Input() recipes: IRecipeViewModel[];
+  @Input() recipes: IRecipeViewModel[] = [];
   @Input() sectionTitle: string;
 
   constructor() {}
