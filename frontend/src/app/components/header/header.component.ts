@@ -39,7 +39,7 @@ export class HeaderComponent implements OnInit {
       error: (error) => console.log(error),
     });
 
-    this.isUserLoggedIn = this.authService.isLoggedIn();
+    this.isUserLoggedIn = this.authService.isUserLoggedIn();
   }
 
   openSubMenu(): void {
