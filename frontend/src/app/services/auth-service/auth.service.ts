@@ -7,11 +7,18 @@ import { IRegistrationResponseModel } from '../../shared/models/responses/IRegis
 import { Router } from '@angular/router';
 import { ILoginRequestModel } from '../../shared/models/requests/ILoginRequestModel';
 import { ILoginResponseModel } from '../../shared/models/responses/ILoginResponseModel';
+import { JwtHelperService } from '@auth0/angular-jwt';
+import { IAuthPayload } from '../../shared/models/responses/IAuthPayload';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
+  private jwtHelperService = new JwtHelperService();
+  private tokenExpirationDate: number;
+  private tokenExpirationDuration: number;
+  private tokenExpirationTimer: any;
+
   constructor(
     private baseHttpService: BaseHttpService,
     private router: Router
@@ -23,6 +30,24 @@ export class AuthService {
 
   getToken(): string {
     return localStorage.getItem('accessToken') as string;
+  }
+
+  private setTokenExpirationDate(): void {
+    const token = this.getToken();
+
+    if (token) {
+      const authPayload = this.jwtHelperService.decodeToken(
+        token
+      ) as IAuthPayload;
+
+      this.tokenExpirationDate = authPayload.exp * 1000;
+    }
+  }
+
+  private getTokenExpirationDuration(): void {
+    const currTime = new Date().getTime();
+    console.log('currTime:', currTime);
+    this.tokenExpirationDuration = this.tokenExpirationDate - +currTime;
   }
 
   private setToken(accessToken: string): void {
@@ -41,6 +66,15 @@ export class AuthService {
     this.setToken(userData.accessToken);
     this.setEmail(userData.email);
     this.setUserId(userData.id);
+  }
+
+  private autoLogOut(): void {
+    this.setTokenExpirationDate();
+    this.getTokenExpirationDuration();
+
+    this.tokenExpirationTimer = setTimeout(() => {
+      this.logOutUser();
+    }, this.tokenExpirationDuration);
   }
 
   registerUser(
@@ -69,12 +103,21 @@ export class AuthService {
       .pipe(
         tap((userData) => {
           this.saveDataToLocalStorage(userData);
+          this.autoLogOut();
           this.router.navigate(['/recipes']);
         })
       );
   }
 
   logOutUser(): void {
-    localStorage.clear();
+    localStorage.removeItem('accessToken');
+    localStorage.removeItem('userId');
+    localStorage.removeItem('email');
+
+    if (this.tokenExpirationTimer) {
+      clearTimeout(this.tokenExpirationTimer);
+    }
+    this.tokenExpirationTimer = null;
+    this.isLoggedIn();
   }
 }
