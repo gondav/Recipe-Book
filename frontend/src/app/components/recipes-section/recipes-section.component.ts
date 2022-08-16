@@ -1,5 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import { RecipeService } from '../../services/recipe-service/recipe.service';
+import { Component, Input, OnInit } from '@angular/core';
 import { IRecipeViewModel } from '../../shared/models/viewmodels/IRecipeViewModel';
 
 @Component({
@@ -8,14 +7,10 @@ import { IRecipeViewModel } from '../../shared/models/viewmodels/IRecipeViewMode
   styleUrls: ['./recipes-section.component.scss'],
 })
 export class RecipesSectionComponent implements OnInit {
-  recipes: IRecipeViewModel[] = [];
+  @Input() recipes: IRecipeViewModel[];
+  @Input() sectionTitle: string;
 
-  constructor(private recipeService: RecipeService) {}
+  constructor() {}
 
-  ngOnInit(): void {
-    this.recipeService.getRecipes().subscribe({
-      next: (recipes) => (this.recipes = recipes),
-      error: (error) => console.log(error.status, error.message),
-    });
-  }
+  ngOnInit(): void {}
 }
