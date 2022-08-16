@@ -16,4 +16,12 @@ export class RecipeService {
       .getItems<IRecipeListResponseModel>(environment.recipeEndpoint)
       .pipe(map((response) => response.recipeList.slice(0, 9)));
   }
+
+  getSavedRecipes(userId: number): Observable<IRecipeViewModel[]> {
+    return this.baseHttpService
+      .getItems<IRecipeListResponseModel>(
+        `${environment.savedRecipesEndpoint}/${userId}`
+      )
+      .pipe(map((response) => response.recipeList));
+  }
 }
