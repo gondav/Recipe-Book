@@ -24,7 +24,7 @@ export class AuthService {
     private router: Router
   ) {}
 
-  isLoggedIn(): boolean {
+  isUserLoggedIn(): boolean {
     return this.getToken() !== null;
   }
 
@@ -112,7 +112,6 @@ export class AuthService {
         tap((userData) => {
           this.saveDataToLocalStorage(userData);
           this.autoLogOut();
-          this.router.navigate(['/recipes']);
         })
       );
   }
@@ -126,6 +125,6 @@ export class AuthService {
       clearTimeout(this.tokenExpirationTimer);
     }
     this.tokenExpirationTimer = null;
-    this.isLoggedIn();
+    this.isUserLoggedIn();
   }
 }
