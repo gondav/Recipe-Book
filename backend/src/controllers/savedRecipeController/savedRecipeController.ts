@@ -24,7 +24,7 @@ export const savedRecipeController = {
     }
     const recipes = await savedRecipeService.getSavedRecipesByUserId(userId);
 
-    res.status(200).json({ recipes });
+    res.status(200).json({ recipeList: recipes });
   },
 
   async saveRecipe(req: Request, res: Response, next: NextFunction) {
