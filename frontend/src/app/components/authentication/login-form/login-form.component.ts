@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '../../../services/auth-service/auth.service';
 
 @Component({
@@ -9,19 +10,26 @@ import { AuthService } from '../../../services/auth-service/auth.service';
 })
 export class LoginFormComponent implements OnInit {
   loginForm: FormGroup;
+  returnUrl: string;
 
-  constructor(private authService: AuthService) {}
+  constructor(
+    private authService: AuthService,
+    private route: ActivatedRoute,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     this.loginForm = new FormGroup({
       email: new FormControl('', [Validators.required, Validators.email]),
       password: new FormControl('', Validators.required),
     });
+
+    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/recipes';
   }
 
   submitLogin(): void {
     this.authService.loginUser(this.loginForm.value).subscribe({
-      next: (response) => console.log('LOGIN RESPONSE', response),
+      next: (_response) => this.router.navigate([this.returnUrl]),
       error: (error) => console.log('LOGIN ERROR:', error),
     });
   }
