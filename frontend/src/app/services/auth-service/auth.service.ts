@@ -32,6 +32,15 @@ export class AuthService {
     return localStorage.getItem('accessToken') as string;
   }
 
+  getUserId(): number {
+    const userId = localStorage.getItem('userId');
+
+    if (!userId) {
+      return 0;
+    }
+    return +userId;
+  }
+
   private setTokenExpirationDate(): void {
     const token = this.getToken();
 
