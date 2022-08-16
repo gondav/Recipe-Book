@@ -1,4 +1,3 @@
-import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { RecipesSectionComponent } from './recipes-section.component';
@@ -10,7 +9,7 @@ describe('RecipesSectionComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [RecipesSectionComponent],
-      imports: [HttpClientTestingModule],
+      imports: [],
     }).compileComponents();
   });
 

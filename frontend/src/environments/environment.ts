@@ -8,6 +8,7 @@ export const environment = {
   recipeEndpoint: 'recipe/recipes',
   userEndpoint: 'user/users',
   userLoginEndpoint: 'user/login',
+  savedRecipesEndpoint: 'savedrecipe/savedrecipes',
 };
 
 /*

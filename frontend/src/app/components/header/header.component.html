@@ -2,7 +2,7 @@
   <nav class="flex-column">
     <div class="nav-sub flex-align-center">
       <ul class="nav-sub-wrapper flex-align-center">
-        <li><a>My Recipes</a></li>
+        <li><a routerLink="/saved-recipes">My Recipes</a></li>
         <li><a>Shopping List</a></li>
         <li><a>My Profile</a></li>
         <li *ngIf="!isUserLoggedIn">
@@ -56,7 +56,9 @@
         <a (click)="logOutUser(); toggleMobMenu(mobMenu)">Sign Out</a>
       </li>
       <li><a>My Profile</a></li>
-      <li><a>My Recipes</a></li>
+      <li (click)="toggleMobMenu(mobMenu)">
+        <a routerLink="/saved-recipes">My Recipes</a>
+      </li>
       <li><a>Shopping List</a></li>
       <li (click)="toggleSubMenu()">
         <a>Recipes + </a>

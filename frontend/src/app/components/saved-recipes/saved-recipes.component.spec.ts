@@ -2,21 +2,21 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 
-import { LandingPageComponent } from './landing-page.component';
+import { SavedRecipesComponent } from './saved-recipes.component';
 
-describe('LandingPageComponent', () => {
-  let component: LandingPageComponent;
-  let fixture: ComponentFixture<LandingPageComponent>;
+describe('SavedRecipesComponent', () => {
+  let component: SavedRecipesComponent;
+  let fixture: ComponentFixture<SavedRecipesComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [LandingPageComponent],
+      declarations: [SavedRecipesComponent],
       imports: [HttpClientTestingModule, RouterTestingModule],
     }).compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(LandingPageComponent);
+    fixture = TestBed.createComponent(SavedRecipesComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

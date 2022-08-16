@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { RecipeService } from '../../services/recipe-service/recipe.service';
+import { IRecipeViewModel } from '../../shared/models/viewmodels/IRecipeViewModel';
 
 @Component({
   selector: 'app-landing-page',
@@ -6,7 +8,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./landing-page.component.scss'],
 })
 export class LandingPageComponent implements OnInit {
-  constructor() {}
+  recipes: IRecipeViewModel[] = [];
+  sectionTitle: string = 'LATEST RECIPES';
 
-  ngOnInit(): void {}
+  constructor(private recipeService: RecipeService) {}
+
+  ngOnInit(): void {
+    this.recipeService.getRecipes().subscribe({
+      next: (recipes) => (this.recipes = recipes),
+      error: (error) => console.log(error.status, error.message),
+    });
+  }
 }
