@@ -45,9 +45,9 @@ export class BaseHttpService {
       .pipe(retry(2), catchError(this.handleError));
   }
 
-  deleteItem(endpoint: string, id: number): Observable<boolean> {
+  deleteItem<T>(endpoint: string, id: number): Observable<T> {
     return this.http
-      .delete<boolean>(`${this.baseURL}/${endpoint}/${id}`)
+      .delete<T>(`${this.baseURL}/${endpoint}/${id}`)
       .pipe(retry(2), catchError(this.handleError));
   }
 
