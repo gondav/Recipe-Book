@@ -40,7 +40,7 @@ export class RecipeCardComponent implements OnInit {
   }
 
   addRecipeToFavorites(userId: number, recipeId: number): void {
-    this.recipeService.addFavoriteRecipe({ userId, recipeId }).subscribe({
+    this.recipeService.addRecipeToFavorites({ userId, recipeId }).subscribe({
       next: (_response) => {
         this.recipeService.addFavoriteRecipeToLocalStorage(recipeId);
         this.isRecipeFavorite = true;
