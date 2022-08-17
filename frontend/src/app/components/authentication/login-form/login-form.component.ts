@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '../../../services/auth-service/auth.service';
+import { take, exhaustMap } from 'rxjs';
+import { RecipeService } from 'src/app/services/recipe-service/recipe.service';
 
 @Component({
   selector: 'app-login-form',
@@ -15,7 +17,8 @@ export class LoginFormComponent implements OnInit {
   constructor(
     private authService: AuthService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private recipeService: RecipeService
   ) {}
 
   ngOnInit(): void {
@@ -28,9 +31,15 @@ export class LoginFormComponent implements OnInit {
   }
 
   submitLogin(): void {
-    this.authService.loginUser(this.loginForm.value).subscribe({
-      next: (_response) => this.router.navigate([this.returnUrl]),
-      error: (error) => console.log('LOGIN ERROR:', error),
-    });
+    this.authService
+      .loginUser(this.loginForm.value)
+      .pipe(
+        take(1),
+        exhaustMap((_response) => this.recipeService.getSavedRecipes())
+      )
+      .subscribe({
+        next: (_response) => this.router.navigate([this.returnUrl]),
+        error: (error) => console.log(error),
+      });
   }
 }
