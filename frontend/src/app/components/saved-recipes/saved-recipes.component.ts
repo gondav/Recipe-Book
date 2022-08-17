@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { RecipeService } from 'src/app/services/recipe-service/recipe.service';
 import { IRecipeViewModel } from '../../shared/models/viewmodels/IRecipeViewModel';
 
@@ -7,7 +7,7 @@ import { IRecipeViewModel } from '../../shared/models/viewmodels/IRecipeViewMode
   templateUrl: './saved-recipes.component.html',
   styleUrls: ['./saved-recipes.component.scss'],
 })
-export class SavedRecipesComponent implements OnInit, OnDestroy {
+export class SavedRecipesComponent implements OnInit {
   recipes: IRecipeViewModel[] = [];
   sectionTitle: string = 'SAVED RECIPES';
   userId = 0;
@@ -23,10 +23,6 @@ export class SavedRecipesComponent implements OnInit, OnDestroy {
         }
       },
     });
-  }
-
-  ngOnDestroy(): void {
-    this.recipeService.isRecipeFavorite.unsubscribe();
   }
 
   getSavedRecipes(): void {
