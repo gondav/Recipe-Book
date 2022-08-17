@@ -29,16 +29,32 @@ $card-img-size-small: 260px;
       align-items: center;
       width: 40px;
       height: 40px;
-      background-color: $color-secondary;
-      color: $color-light-black;
       border-radius: 100%;
       margin: 8px 8px 0 0;
       transition: 400ms;
 
       &:hover {
         cursor: pointer;
+      }
+    }
+
+    .circle.not-favorite {
+      background-color: $color-secondary;
+      color: $color-light-black;
+
+      &:hover {
         background-color: $color-light-black-transparent;
         color: $color-secondary;
+      }
+    }
+
+    .circle.favorite {
+      background-color: $color-light-black-transparent;
+      color: $color-secondary;
+
+      &:hover {
+        background-color: $color-secondary;
+        color: $color-light-black;
       }
     }
   }
