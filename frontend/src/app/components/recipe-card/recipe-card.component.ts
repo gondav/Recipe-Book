@@ -44,6 +44,7 @@ export class RecipeCardComponent implements OnInit {
       next: (_response) => {
         this.recipeService.addFavoriteRecipeToLocalStorage(recipeId);
         this.isRecipeFavorite = true;
+        this.recipeService.isRecipeFavorite.next(true);
       },
       error: (error) => console.log(error),
     });
@@ -52,8 +53,9 @@ export class RecipeCardComponent implements OnInit {
   removeRecipeFromFavorites(recipeId: number): void {
     this.recipeService.removeRecipeFromFavorites(recipeId).subscribe({
       next: (_response) => {
-        this.isRecipeFavorite = false;
         this.recipeService.removeFavoriteRecipeFromLocalStorage(recipeId);
+        this.isRecipeFavorite = false;
+        this.recipeService.isRecipeFavorite.next(false);
       },
       error: (error) => console.log(error),
     });
