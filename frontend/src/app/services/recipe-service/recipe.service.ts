@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { map, tap, Observable } from 'rxjs';
+import { map, tap, Observable, BehaviorSubject } from 'rxjs';
 import { ISaveRecipeRequestModel } from '../../shared/models/requests/ISaveRecipeRequestModel';
 import { IRemoveRecipeResponseModel } from '../../shared/models/responses/IRemoveRecipeResponseModel';
 import { ISaveRecipeResponseModel } from '../../shared/models/responses/ISaveRecipeResponseModel';
@@ -13,6 +13,8 @@ import { BaseHttpService } from '../base-service/base.service';
   providedIn: 'root',
 })
 export class RecipeService {
+  isRecipeFavorite = new BehaviorSubject<boolean>(true);
+
   constructor(
     private baseHttpService: BaseHttpService,
     private authService: AuthService
