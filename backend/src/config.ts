@@ -14,6 +14,6 @@ export default {
   },
   jwt: {
     secretKey: process.env.JWT_ACCESS_TOKEN,
-    expiresIn: '60m'
+    expiresIn: '1h'
   }
 };
