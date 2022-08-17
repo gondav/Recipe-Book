@@ -1,4 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { AuthService } from 'src/app/services/auth-service/auth.service';
+import { RecipeService } from 'src/app/services/recipe-service/recipe.service';
 import { IRecipeViewModel } from '../../shared/models/viewmodels/IRecipeViewModel';
 
 @Component({
@@ -8,8 +10,54 @@ import { IRecipeViewModel } from '../../shared/models/viewmodels/IRecipeViewMode
 })
 export class RecipeCardComponent implements OnInit {
   @Input() recipe: IRecipeViewModel;
+  isRecipeFavorite = false;
 
-  constructor() {}
+  constructor(
+    private recipeService: RecipeService,
+    private authService: AuthService
+  ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.setIsRecipeFavorite();
+  }
+
+  setIsRecipeFavorite(): void {
+    const favoriteRecipes =
+      this.recipeService.getFavoriteRecipesFromLocalStorage();
+
+    if (favoriteRecipes.includes(this.recipe.recipeId)) {
+      this.isRecipeFavorite = true;
+    }
+  }
+
+  toggleFavoriteRecipes() {
+    const userId = this.authService.getUserId();
+    const recipeId = this.recipe.recipeId;
+
+    this.isRecipeFavorite
+      ? this.removeRecipeFromFavorites(recipeId)
+      : this.addRecipeToFavorites(userId, recipeId);
+  }
+
+  addRecipeToFavorites(userId: number, recipeId: number): void {
+    this.recipeService.addRecipeToFavorites({ userId, recipeId }).subscribe({
+      next: (_response) => {
+        this.recipeService.addFavoriteRecipeToLocalStorage(recipeId);
+        this.isRecipeFavorite = true;
+        this.recipeService.isRecipeFavorite.next(true);
+      },
+      error: (error) => console.log(error),
+    });
+  }
+
+  removeRecipeFromFavorites(recipeId: number): void {
+    this.recipeService.removeRecipeFromFavorites(recipeId).subscribe({
+      next: (_response) => {
+        this.recipeService.removeFavoriteRecipeFromLocalStorage(recipeId);
+        this.isRecipeFavorite = false;
+        this.recipeService.isRecipeFavorite.next(false);
+      },
+      error: (error) => console.log(error),
+    });
+  }
 }

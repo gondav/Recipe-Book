@@ -120,6 +120,7 @@ export class AuthService {
     localStorage.removeItem('accessToken');
     localStorage.removeItem('userId');
     localStorage.removeItem('email');
+    localStorage.removeItem('favoriteRecipes');
 
     if (this.tokenExpirationTimer) {
       clearTimeout(this.tokenExpirationTimer);

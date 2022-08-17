@@ -3,10 +3,14 @@
     class="img-container"
     [ngStyle]="{ 'background-image': recipe.imageId | backgroundImgUrl }"
   >
-    <span class="circle">
+    <span class="circle not-favorite">
       <i class="fa-solid fa-cart-shopping"></i>
     </span>
-    <span class="circle">
+    <span
+      (click)="toggleFavoriteRecipes()"
+      [ngClass]="isRecipeFavorite ? 'favorite' : 'not-favorite'"
+      class="circle"
+    >
       <i class="fa-solid fa-bookmark"></i>
     </span>
   </div>

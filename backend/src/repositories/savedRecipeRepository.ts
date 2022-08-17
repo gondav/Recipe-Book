@@ -36,7 +36,7 @@ export const savedRecipeRepository = {
   removeSavedRecipe(savedRecipeId: number): Promise<IDbResultDataModel> {
     return db.query(
       `DELETE FROM saved_recipe
-      WHERE id = ?`,
+      WHERE recipe_id = ?`,
       [String(savedRecipeId)]
     );
   }
