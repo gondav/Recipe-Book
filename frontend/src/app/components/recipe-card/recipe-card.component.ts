@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth-service/auth.service';
 import { RecipeService } from 'src/app/services/recipe-service/recipe.service';
 import { IRecipeViewModel } from '../../shared/models/viewmodels/IRecipeViewModel';
@@ -14,7 +15,8 @@ export class RecipeCardComponent implements OnInit {
 
   constructor(
     private recipeService: RecipeService,
-    private authService: AuthService
+    private authService: AuthService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -30,7 +32,7 @@ export class RecipeCardComponent implements OnInit {
     }
   }
 
-  toggleFavoriteRecipes() {
+  toggleFavoriteRecipes(): void {
     const userId = this.authService.getUserId();
     const recipeId = this.recipe.recipeId;
 
@@ -46,7 +48,12 @@ export class RecipeCardComponent implements OnInit {
         this.isRecipeFavorite = true;
         this.recipeService.isRecipeFavorite.next(true);
       },
-      error: (error) => console.log(error),
+      error: (error) => {
+        console.log(error);
+        if (error.status === 401) {
+          this.router.navigate(['/login']);
+        }
+      },
     });
   }
 
@@ -57,7 +64,12 @@ export class RecipeCardComponent implements OnInit {
         this.isRecipeFavorite = false;
         this.recipeService.isRecipeFavorite.next(false);
       },
-      error: (error) => console.log(error),
+      error: (error) => {
+        if (error.status === 401) {
+          console.log(error);
+          this.router.navigate(['/login']);
+        }
+      },
     });
   }
 }
