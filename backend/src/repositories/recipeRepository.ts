@@ -21,7 +21,7 @@ export const recipeRepository = {
     recipeId: number
   ): Promise<IRecipeIngredientsDomainModel[]> {
     const recipeDetails =
-      'SELECT qty_amount as qtyAmount, measurement_description as measurementDescription, ingredient_name as ingredientName FROM recipe JOIN recipe_details ON recipe.recipe_id = recipe_details.recipe_id JOIN measurement_unit ON recipe_details.measurement_id = measurement_unit.measurement_id JOIN ingredient ON recipe_details.ingredient_id = ingredient.ingredient_id JOIN measurement_qty ON recipe_details.measurement_qty_id = measurement_qty.measurement_qty_id WHERE recipe.recipe_id = ?';
+      'SELECT qty_amount as qtyAmount, measurement_description as measurementDescription, ingredient_name as ingredientName FROM recipe JOIN recipe_details ON recipe.recipe_id = recipe_details.recipe_id JOIN measurement_unit ON recipe_details.measurement_id = measurement_unit.id JOIN ingredient ON recipe_details.ingredient_id = ingredient.ingredient_id JOIN measurement_qty ON recipe_details.measurement_qty_id = measurement_qty.measurement_qty_id WHERE recipe.recipe_id = ?';
     return db.query<IRecipeIngredientsDomainModel[]>(recipeDetails, [
       String(recipeId)
     ]);
