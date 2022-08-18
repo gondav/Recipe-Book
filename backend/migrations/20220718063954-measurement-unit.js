@@ -16,7 +16,7 @@ exports.setup = function (options, seedLink) {
 
 exports.up = function (db) {
   return db.createTable('measurement_unit', {
-    measurement_id: {
+    id: {
       type: 'int',
       primaryKey: true,
       unsigned: true,
