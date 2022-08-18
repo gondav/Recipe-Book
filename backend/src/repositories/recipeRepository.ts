@@ -29,7 +29,7 @@ export const recipeRepository = {
 
   getRecipesByTagName(tagName: string): Promise<IRecipeDomainModel[]> {
     const recipes =
-      'SELECT DISTINCT recipe.recipe_id as recipeId, recipe_name as recipeName, description, image_id as imageId FROM recipe JOIN recipe_details ON recipe.recipe_id = recipe_details.recipe_id JOIN recipe_tag ON recipe_details.recipe_tag_id = recipe_tag.tag_id WHERE tag = ?';
+      'SELECT DISTINCT recipe.recipe_id as recipeId, recipe_name as recipeName, description, image_id as imageId FROM recipe JOIN recipe_details ON recipe.recipe_id = recipe_details.recipe_id JOIN recipe_tag ON recipe_details.recipe_tag_id = recipe_tag.id WHERE tag = ?';
     return db.query<IRecipeDomainModel[]>(recipes, [tagName]);
   }
 };
