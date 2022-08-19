@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { AuthService } from '../../../services/auth-service/auth.service';
+import { AuthService } from '../../../core/services/auth-service/auth.service';
 import { take, exhaustMap } from 'rxjs';
-import { RecipeService } from 'src/app/services/recipe-service/recipe.service';
+import { RecipeService } from '../../../core/services/recipe-service/recipe.service';
 
 @Component({
   selector: 'app-login-form',

@@ -14,7 +14,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { BackgroundImgUrlPipe } from './pipes/background-img-url.pipe';
 import { RegisterFormComponent } from './components/authentication/register-form/register-form.component';
 import { AuthenticationPageComponent } from './components/authentication/authentication-page.component';
-import { TokenInterceptor } from './interceptors/tokenInterceptor/token.interceptor';
+import { TokenInterceptor } from '../app/core/interceptors/tokenInterceptor/token.interceptor';
 import { SavedRecipesComponent } from './components/saved-recipes/saved-recipes.component';
 
 @NgModule({

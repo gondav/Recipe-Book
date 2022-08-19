@@ -3,7 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { AuthenticationPageComponent } from './components/authentication/authentication-page.component';
 import { LandingPageComponent } from './components/landing-page/landing-page.component';
 import { SavedRecipesComponent } from './components/saved-recipes/saved-recipes.component';
-import { AuthGuard } from './services/authGuard/auth.guard';
+import { AuthGuard } from './core/services/authGuard/auth.guard';
 
 const routes: Routes = [
   { path: '', redirectTo: 'recipes', pathMatch: 'full' },
