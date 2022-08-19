@@ -11,7 +11,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { RegisterFormComponent } from './features/authentication/register-form/register-form.component';
 import { AuthenticationPageComponent } from './features/authentication/authentication-page.component';
 import { TokenInterceptor } from '../app/core/interceptors/tokenInterceptor/token.interceptor';
-import { SavedRecipesComponent } from './features/saved-recipes/saved-recipes.component';
 import { CoreModule } from './core/core.module';
 import { SharedModule } from './shared/shared.module';
 
@@ -22,7 +21,6 @@ import { SharedModule } from './shared/shared.module';
     AuthenticationPageComponent,
     LoginFormComponent,
     RegisterFormComponent,
-    SavedRecipesComponent,
   ],
   imports: [
     BrowserModule,
