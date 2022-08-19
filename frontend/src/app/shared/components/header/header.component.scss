@@ -1,4 +1,4 @@
-@import "../../../styles/config.scss";
+@import "../../../../styles/config.scss";
 
 header {
   nav {
@@ -79,7 +79,7 @@ header {
     max-width: $max-width;
     margin: auto;
     background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
-      url("../../../assets/header-cover.jpg");
+      url("../../../../assets/header-cover.jpg");
     background-position: center;
     background-repeat: no-repeat;
     background-attachment: fixed;
