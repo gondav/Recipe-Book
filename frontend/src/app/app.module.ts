@@ -5,9 +5,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
-import { HeaderComponent } from './components/header/header.component';
-import { RecipeCardComponent } from './components/recipe-card/recipe-card.component';
-import { RecipesSectionComponent } from './components/recipes-section/recipes-section.component';
+import { HeaderComponent } from './shared/components/header/header.component';
+import { RecipeCardComponent } from './shared/components/recipes-section/recipe-card/recipe-card.component';
+import { RecipesSectionComponent } from './shared/components/recipes-section/recipes-section.component';
 import { LandingPageComponent } from './components/landing-page/landing-page.component';
 import { LoginFormComponent } from './components/authentication/login-form/login-form.component';
 import { AppRoutingModule } from './app-routing.module';
