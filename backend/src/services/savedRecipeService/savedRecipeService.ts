@@ -39,8 +39,14 @@ export const savedRecipeService = {
     }
   },
 
-  async removeSavedRecipe(savedRecipeId: number): Promise<void> {
-    const result = await savedRecipeRepository.removeSavedRecipe(savedRecipeId);
+  async removeSavedRecipe(
+    savedRecipeId: number,
+    userId: number
+  ): Promise<void> {
+    const result = await savedRecipeRepository.removeSavedRecipe(
+      savedRecipeId,
+      userId
+    );
 
     if (result.affectedRows < 1) {
       return Promise.reject(serverError('Cannot delete recipe'));
