@@ -33,11 +33,14 @@ export const savedRecipeRepository = {
     );
   },
 
-  removeSavedRecipe(savedRecipeId: number): Promise<IDbResultDataModel> {
+  removeSavedRecipe(
+    savedRecipeId: number,
+    userId: number
+  ): Promise<IDbResultDataModel> {
     return db.query(
       `DELETE FROM saved_recipe
-      WHERE recipe_id = ?`,
-      [String(savedRecipeId)]
+      WHERE recipe_id = ? and user_id = ?`,
+      [String(savedRecipeId), String(userId)]
     );
   }
 };
