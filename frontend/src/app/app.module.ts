@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './shared/components/header/header.component';
@@ -16,6 +16,7 @@ import { RegisterFormComponent } from './features/authentication/register-form/r
 import { AuthenticationPageComponent } from './features/authentication/authentication-page.component';
 import { TokenInterceptor } from '../app/core/interceptors/tokenInterceptor/token.interceptor';
 import { SavedRecipesComponent } from './features/saved-recipes/saved-recipes.component';
+import { CoreModule } from './core/core.module';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,7 @@ import { SavedRecipesComponent } from './features/saved-recipes/saved-recipes.co
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    HttpClientModule,
+    CoreModule,
     ReactiveFormsModule,
   ],
   providers: [
