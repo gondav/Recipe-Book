@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
 import { map, tap, Observable, BehaviorSubject } from 'rxjs';
-import { ISaveRecipeRequestModel } from '../../shared/models/requests/ISaveRecipeRequestModel';
-import { IRemoveRecipeResponseModel } from '../../shared/models/responses/IRemoveRecipeResponseModel';
-import { ISaveRecipeResponseModel } from '../../shared/models/responses/ISaveRecipeResponseModel';
-import { environment } from '../../../environments/environment';
-import { IRecipeListResponseModel } from '../../shared/models/responses/IRecipeListResponseModel';
-import { IRecipeViewModel } from '../../shared/models/viewmodels/IRecipeViewModel';
+import { ISaveRecipeRequestModel } from '../../../shared/models/requests/ISaveRecipeRequestModel';
+import { IRemoveRecipeResponseModel } from '../../../shared/models/responses/IRemoveRecipeResponseModel';
+import { ISaveRecipeResponseModel } from '../../../shared/models/responses/ISaveRecipeResponseModel';
+import { environment } from '../../../../environments/environment';
+import { IRecipeListResponseModel } from '../../../shared/models/responses/IRecipeListResponseModel';
+import { IRecipeViewModel } from '../../../shared/models/viewmodels/IRecipeViewModel';
 import { AuthService } from '../auth-service/auth.service';
 import { BaseHttpService } from '../base-service/base.service';
 

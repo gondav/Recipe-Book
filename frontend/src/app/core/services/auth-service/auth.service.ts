@@ -1,14 +1,14 @@
 import { Injectable } from '@angular/core';
 import { BaseHttpService } from '../base-service/base.service';
-import { IRegistrationRequestModel } from '../../shared/models/requests/IRegistrationRequestModel';
-import { environment } from '../../../environments/environment';
+import { IRegistrationRequestModel } from '../../../shared/models/requests/IRegistrationRequestModel';
+import { environment } from '../../../../environments/environment';
 import { map, tap, Observable } from 'rxjs';
-import { IRegistrationResponseModel } from '../../shared/models/responses/IRegistrationResponseModel';
+import { IRegistrationResponseModel } from '../../../shared/models/responses/IRegistrationResponseModel';
 import { Router } from '@angular/router';
-import { ILoginRequestModel } from '../../shared/models/requests/ILoginRequestModel';
-import { ILoginResponseModel } from '../../shared/models/responses/ILoginResponseModel';
+import { ILoginRequestModel } from '../../../shared/models/requests/ILoginRequestModel';
+import { ILoginResponseModel } from '../../../shared/models/responses/ILoginResponseModel';
 import { JwtHelperService } from '@auth0/angular-jwt';
-import { IAuthPayload } from '../../shared/models/responses/IAuthPayload';
+import { IAuthPayload } from '../../../shared/models/responses/IAuthPayload';
 
 @Injectable({
   providedIn: 'root',
