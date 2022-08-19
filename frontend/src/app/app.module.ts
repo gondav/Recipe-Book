@@ -5,8 +5,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
-import { RecipeCardComponent } from './shared/components/recipes-section/recipe-card/recipe-card.component';
-import { RecipesSectionComponent } from './shared/components/recipes-section/recipes-section.component';
 import { LandingPageComponent } from './features/landing-page/landing-page.component';
 import { LoginFormComponent } from './features/authentication/login-form/login-form.component';
 import { AppRoutingModule } from './app-routing.module';
@@ -20,8 +18,6 @@ import { SharedModule } from './shared/shared.module';
 @NgModule({
   declarations: [
     AppComponent,
-    RecipeCardComponent,
-    RecipesSectionComponent,
     LandingPageComponent,
     AuthenticationPageComponent,
     LoginFormComponent,
