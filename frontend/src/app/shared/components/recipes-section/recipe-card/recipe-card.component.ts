@@ -1,8 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthService } from '../../core/services/auth-service/auth.service';
-import { RecipeService } from '../../core/services/recipe-service/recipe.service';
-import { IRecipeViewModel } from '../../shared/models/viewmodels/IRecipeViewModel';
+import { AuthService } from '../../../../core/services/auth-service/auth.service';
+import { RecipeService } from '../../../../core/services/recipe-service/recipe.service';
+import { IRecipeViewModel } from '../../../../shared/models/viewmodels/IRecipeViewModel';
 
 @Component({
   selector: 'app-recipe-card',

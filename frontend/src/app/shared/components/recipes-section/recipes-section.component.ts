@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { IRecipeViewModel } from '../../shared/models/viewmodels/IRecipeViewModel';
+import { IRecipeViewModel } from '../../../shared/models/viewmodels/IRecipeViewModel';
 
 @Component({
   selector: 'app-recipes-section',
