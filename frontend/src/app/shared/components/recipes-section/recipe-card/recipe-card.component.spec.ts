@@ -1,7 +1,7 @@
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
-import { BackgroundImgUrlPipe } from 'src/app/pipes/background-img-url.pipe';
+import { BackgroundImgUrlPipe } from '../../../pipes/background-img-url.pipe';
 
 import { RecipeCardComponent } from './recipe-card.component';
 
