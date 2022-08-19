@@ -44,11 +44,16 @@ export const savedRecipeController = {
 
   async removeSavedRecipe(req: Request, res: Response, next: NextFunction) {
     const savedRecipeId = Number(req.params.savedRecipeId);
+    const userId = jwtService.getUserIdFromTokenPayload(req);
+
+    if (!userId) {
+      return next(unauthorizedError('Not Authorized'));
+    }
 
     if (!savedRecipeId || isNaN(savedRecipeId) || savedRecipeId < 1) {
       return next(badRequestError('Id needs to be a positive integer'));
     }
-    await savedRecipeService.removeSavedRecipe(savedRecipeId);
+    await savedRecipeService.removeSavedRecipe(savedRecipeId, userId);
 
     res.status(200).json({ message: 'Recipe removed from saved recipes' });
   }
