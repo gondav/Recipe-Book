@@ -5,7 +5,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
-import { HeaderComponent } from './shared/components/header/header.component';
 import { RecipeCardComponent } from './shared/components/recipes-section/recipe-card/recipe-card.component';
 import { RecipesSectionComponent } from './shared/components/recipes-section/recipes-section.component';
 import { LandingPageComponent } from './features/landing-page/landing-page.component';
@@ -17,11 +16,11 @@ import { AuthenticationPageComponent } from './features/authentication/authentic
 import { TokenInterceptor } from '../app/core/interceptors/tokenInterceptor/token.interceptor';
 import { SavedRecipesComponent } from './features/saved-recipes/saved-recipes.component';
 import { CoreModule } from './core/core.module';
+import { SharedModule } from './shared/shared.module';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HeaderComponent,
     RecipeCardComponent,
     RecipesSectionComponent,
     LandingPageComponent,
@@ -36,6 +35,7 @@ import { CoreModule } from './core/core.module';
     AppRoutingModule,
     BrowserAnimationsModule,
     CoreModule,
+    SharedModule,
     ReactiveFormsModule,
   ],
   providers: [
