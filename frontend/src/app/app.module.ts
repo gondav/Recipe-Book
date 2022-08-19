@@ -10,7 +10,6 @@ import { RecipesSectionComponent } from './shared/components/recipes-section/rec
 import { LandingPageComponent } from './features/landing-page/landing-page.component';
 import { LoginFormComponent } from './features/authentication/login-form/login-form.component';
 import { AppRoutingModule } from './app-routing.module';
-import { BackgroundImgUrlPipe } from './shared/pipes/background-img-url.pipe';
 import { RegisterFormComponent } from './features/authentication/register-form/register-form.component';
 import { AuthenticationPageComponent } from './features/authentication/authentication-page.component';
 import { TokenInterceptor } from '../app/core/interceptors/tokenInterceptor/token.interceptor';
@@ -24,7 +23,6 @@ import { SharedModule } from './shared/shared.module';
     RecipeCardComponent,
     RecipesSectionComponent,
     LandingPageComponent,
-    BackgroundImgUrlPipe,
     AuthenticationPageComponent,
     LoginFormComponent,
     RegisterFormComponent,
