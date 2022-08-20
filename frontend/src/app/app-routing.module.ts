@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AuthenticationPageComponent } from './features/authentication/authentication-page.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'recipes', pathMatch: 'full' },
@@ -18,8 +17,20 @@ const routes: Routes = [
         (m) => m.SavedRecipesModule
       ),
   },
-  { path: 'login', component: AuthenticationPageComponent },
-  { path: 'register', component: AuthenticationPageComponent },
+  {
+    path: 'login',
+    loadChildren: () =>
+      import('./features/authentication/authentication.module').then(
+        (m) => m.AuthenticationModule
+      ),
+  },
+  {
+    path: 'register',
+    loadChildren: () =>
+      import('./features/authentication/authentication.module').then(
+        (m) => m.AuthenticationModule
+      ),
+  },
 ];
 
 @NgModule({
