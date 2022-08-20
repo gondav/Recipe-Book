@@ -20,7 +20,7 @@ export class AuthGuard implements CanActivate {
   ): boolean | UrlTree {
     if (!this.authService.isUserLoggedIn()) {
       return this.router.createUrlTree(['/login'], {
-        queryParams: { returnUrl: state.url },
+        queryParams: { returnUrl: state.url.slice(1) },
       });
     }
     return true;
