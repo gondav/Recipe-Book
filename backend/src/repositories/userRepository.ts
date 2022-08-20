@@ -6,7 +6,7 @@ import { IDbResultDataModel } from 'src/models/dataModels/IDbResultDataModel';
 export const userRepository = {
   async getUserById(userId: number): Promise<IUserDomainModel[]> {
     return await db.query<IUserDomainModel[]>(
-      'SELECT id, first_name as firstName, last_name as lastName, email, password FROM user WHERE id = ?',
+      'SELECT id, firstName, lastName, email, password FROM user WHERE id = ?',
       [String(userId)]
     );
   },
@@ -22,7 +22,7 @@ export const userRepository = {
     registerUser: IRegisterUserDataModel
   ): Promise<IDbResultDataModel> {
     return await db.query<IDbResultDataModel>(
-      'INSERT INTO recipe_book.user (first_name, last_name, email, password) VALUES (?, ?, ?, ?)',
+      'INSERT INTO recipe_book.user (firstName, lastName, email, password) VALUES (?, ?, ?, ?)',
       [
         registerUser.firstName,
         registerUser.lastName,
