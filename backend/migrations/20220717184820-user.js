@@ -24,8 +24,8 @@ exports.up = function (db) {
       autoIncrement: true,
       unique: true
     },
-    first_name: { type: 'string', length: 44, notNull: true },
-    last_name: { type: 'string', length: 40, notNull: true },
+    firstName: { type: 'string', length: 44, notNull: true },
+    lastName: { type: 'string', length: 40, notNull: true },
     email: { type: 'string', length: 64, notNull: true, unique: true },
     password: { type: 'string', length: 64, notNull: true }
   });
