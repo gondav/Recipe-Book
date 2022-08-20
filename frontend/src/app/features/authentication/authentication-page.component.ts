@@ -12,7 +12,7 @@ export class AuthenticationPageComponent implements OnInit {
   constructor(private route: ActivatedRoute) {}
 
   ngOnInit(): void {
-    this.route.url.subscribe({
+    this.route.parent?.url.subscribe({
       next: (url) => (this.formType = url[0].path),
       error: (error) => console.log(error),
     });
