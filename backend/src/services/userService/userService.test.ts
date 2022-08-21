@@ -171,4 +171,23 @@ describe('updatePassword', () => {
     expect(hashPasswordService.generateHashedPassword).toHaveBeenCalledTimes(1);
     expect(userRepository.updatePassword).toHaveBeenCalledTimes(1);
   });
+
+  it("should return notFound if userRepository doesn't return a user", async () => {
+    // Arrange
+    userRepository.getUserByEmail = jest.fn().mockReturnValue([]);
+
+    //Act
+    try {
+      await userService.updatePassword(
+        'mock@email.com',
+        'oldPassword',
+        'newPassword'
+      );
+    } catch (error) {
+      // Assert
+      console.log('ERROR', error);
+      expect(error.status).toBe(404);
+      expect(error.message).toBe('User not found or account does not exist');
+    }
+  });
 });
