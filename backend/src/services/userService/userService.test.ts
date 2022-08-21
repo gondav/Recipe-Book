@@ -130,3 +130,45 @@ describe('registerUser', () => {
     }
   });
 });
+
+describe('updatePassword', () => {
+  it('should call once: userRepository.getUserByEmail, hashPasswordService.comparePassword, hashPasswordService.generateHashedPassword, userRepository.updatePassword', async () => {
+    // Arrange
+    const mockReturnedUserObjArr: IUserDomainModel[] = [
+      {
+        id: 1,
+        firstName: 'mockFirstName',
+        lastName: 'mockLastName',
+        email: 'mock@email.com',
+        password: 'mockPassword1'
+      }
+    ];
+
+    userRepository.getUserByEmail = jest
+      .fn()
+      .mockReturnValue(mockReturnedUserObjArr);
+
+    hashPasswordService.comparePassword = jest.fn().mockReturnValue(true);
+
+    hashPasswordService.generateHashedPassword = jest
+      .fn()
+      .mockReturnValue('hashedPassword');
+
+    userRepository.updatePassword = jest
+      .fn()
+      .mockReturnValue({ affectedRows: 1 });
+
+    //Act
+    await userService.updatePassword(
+      'mock@email.com',
+      'mockOldPassword',
+      'mockNewPassword'
+    );
+
+    // Assert
+    expect(userRepository.getUserByEmail).toHaveBeenCalledTimes(1);
+    expect(hashPasswordService.comparePassword).toHaveBeenCalledTimes(1);
+    expect(hashPasswordService.generateHashedPassword).toHaveBeenCalledTimes(1);
+    expect(userRepository.updatePassword).toHaveBeenCalledTimes(1);
+  });
+});
