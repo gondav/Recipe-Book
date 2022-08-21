@@ -50,7 +50,6 @@ export const userService = {
         notFoundError('User not found or account does not exist')
       );
     }
-    console.log(registeredUser);
     const isPasswordValid = await hashPasswordService.comparePassword(
       oldPassword,
       registeredUser[0].password
