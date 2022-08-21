@@ -158,7 +158,7 @@ describe('removeSavedRecipe', () => {
 
     // Act
     try {
-      await savedRecipeService.removeSavedRecipe(1);
+      await savedRecipeService.removeSavedRecipe(1, 1);
     } catch (error) {
       // Assert
       expect(error.status).toBe(500);
