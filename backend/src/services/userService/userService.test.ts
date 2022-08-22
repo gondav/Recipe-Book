@@ -339,3 +339,20 @@ describe('loginUser', () => {
     }
   });
 });
+
+describe('deleteUser', () => {
+  it('should throw error if affectedRows less than 1', async () => {
+    // Arrange
+    userRepository.deleteUser = jest.fn().mockReturnValue({ affectedRows: 0 });
+
+    // Act
+    try {
+      await userService.deleteUser(1);
+    } catch (error) {
+      // Assert
+      expect(error.status).toBe(500);
+      expect(error.message).toBe('Cannot delete user');
+      expect(userRepository.deleteUser).toHaveBeenCalledTimes(1);
+    }
+  });
+});
