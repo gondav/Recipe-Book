@@ -34,8 +34,8 @@ describe('getUserById', () => {
 
     userRepository.getUserById = jest.fn().mockReturnValue(mockUserObj);
 
-    // Act
     try {
+      // Act
       await userService.getUserById(1);
     } catch (error) {
       // Assert
@@ -93,8 +93,8 @@ describe('registerUser', () => {
       .fn()
       .mockReturnValue(mockReturnedUserObjArr);
 
-    // Act
     try {
+      // Act
       await userService.registerUser(mockUserObj);
     } catch (error) {
       // Assert
@@ -120,8 +120,8 @@ describe('registerUser', () => {
       .fn()
       .mockReturnValue({ affectedRows: 0 });
 
-    //Act
     try {
+      //Act
       await userService.registerUser(mockUserObj);
     } catch (error) {
       //Assert
@@ -176,8 +176,8 @@ describe('updatePassword', () => {
     // Arrange
     userRepository.getUserByEmail = jest.fn().mockReturnValue([]);
 
-    //Act
     try {
+      //Act
       await userService.updatePassword(
         'mock@email.com',
         'oldPassword',
@@ -208,8 +208,8 @@ describe('updatePassword', () => {
       .mockReturnValue(mockReturnedUserObjArr);
     hashPasswordService.comparePassword = jest.fn().mockReturnValue(false);
 
-    // Act
     try {
+      // Act
       await userService.updatePassword(
         'mock@email.com',
         'oldPassword',
@@ -247,8 +247,8 @@ describe('updatePassword', () => {
       .fn()
       .mockReturnValue({ affectedRows: 0 });
 
-    //Act
     try {
+      //Act
       await userService.updatePassword(
         'mock@email.com',
         'oldPassword',
@@ -263,6 +263,9 @@ describe('updatePassword', () => {
 });
 
 describe('loginUser', () => {
+  const mockEmail = 'mock@email.com';
+  const mockPassword = 'mockPassword1';
+
   it('should return user', async () => {
     // Arrange
     const mockReturnedUserObjArr: IUserDomainModel[] = [
@@ -281,10 +284,7 @@ describe('loginUser', () => {
     hashPasswordService.comparePassword = jest.fn().mockReturnValue(true);
 
     // Act
-    const result = await userService.loginUser(
-      'mock@email.com',
-      'mockPassword1'
-    );
+    const result = await userService.loginUser(mockEmail, mockPassword);
 
     // Assert
     expect(result).toEqual(mockReturnedUserObjArr[0]);
@@ -297,9 +297,9 @@ describe('loginUser', () => {
     userRepository.getUserByEmail = jest.fn().mockReturnValue([]);
     hashPasswordService.comparePassword = jest.fn();
 
-    // Act
     try {
-      await userService.loginUser('mock@email.com', 'mockPassword1');
+      // Act
+      await userService.loginUser(mockEmail, mockPassword);
     } catch (error) {
       // Assert
       expect(error.status).toBe(401);
@@ -327,9 +327,9 @@ describe('loginUser', () => {
       .mockReturnValue(mockReturnedUserObjArr);
     hashPasswordService.comparePassword = jest.fn().mockReturnValue(false);
 
-    // Act
     try {
-      await userService.loginUser('mock@email.com', 'mockPassword1');
+      // Act
+      await userService.loginUser(mockEmail, mockPassword);
     } catch (error) {
       // Assert
       expect(error.status).toBe(401);
@@ -345,8 +345,8 @@ describe('deleteUser', () => {
     // Arrange
     userRepository.deleteUser = jest.fn().mockReturnValue({ affectedRows: 0 });
 
-    // Act
     try {
+      // Act
       await userService.deleteUser(1);
     } catch (error) {
       // Assert
