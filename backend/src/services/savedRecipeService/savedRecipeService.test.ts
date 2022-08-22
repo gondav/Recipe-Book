@@ -73,8 +73,8 @@ describe('saveRecipe', () => {
     // Arrange
     userRepository.getUserById = jest.fn().mockReturnValue([]);
 
-    // Act
     try {
+      // Act
       await savedRecipeService.saveRecipe(userId, recipeId);
     } catch (error) {
       // Assert
@@ -88,8 +88,8 @@ describe('saveRecipe', () => {
     userRepository.getUserById = jest.fn().mockReturnValue([user]);
     recipeRepository.getRecipe = jest.fn().mockReturnValue([]);
 
-    // Act
     try {
+      // Act
       await savedRecipeService.saveRecipe(userId, recipeId);
     } catch (error) {
       // Assert
@@ -119,8 +119,8 @@ describe('saveRecipe', () => {
       .fn()
       .mockReturnValue([savedRecipe]);
 
-    // Act
     try {
+      // Act
       await savedRecipeService.saveRecipe(userId, recipeId);
     } catch (error) {
       // Assert
@@ -138,8 +138,8 @@ describe('saveRecipe', () => {
       .fn()
       .mockReturnValue({ affectedRows: 0 });
 
-    // Act
     try {
+      // Act
       await savedRecipeService.saveRecipe(userId, recipeId);
     } catch (error) {
       // Assert
@@ -156,9 +156,9 @@ describe('removeSavedRecipe', () => {
       .fn()
       .mockReturnValue({ affectedRows: 0 });
 
-    // Act
     try {
-      await savedRecipeService.removeSavedRecipe(1);
+      // Act
+      await savedRecipeService.removeSavedRecipe(1, 1);
     } catch (error) {
       // Assert
       expect(error.status).toBe(500);
