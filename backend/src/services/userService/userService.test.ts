@@ -261,3 +261,34 @@ describe('updatePassword', () => {
     }
   });
 });
+
+describe('loginUser', () => {
+  it('should return user', async () => {
+    // Arrange
+    const mockReturnedUserObjArr: IUserDomainModel[] = [
+      {
+        id: 1,
+        firstName: 'mockFirstName',
+        lastName: 'mockLastName',
+        email: 'mock@email.com',
+        password: 'mockPassword1'
+      }
+    ];
+
+    userRepository.getUserByEmail = jest
+      .fn()
+      .mockReturnValue(mockReturnedUserObjArr);
+    hashPasswordService.comparePassword = jest.fn().mockReturnValue(true);
+
+    // Act
+    const result = await userService.loginUser(
+      'mock@email.com',
+      'mockPassword1'
+    );
+
+    // Assert
+    expect(result).toEqual(mockReturnedUserObjArr[0]);
+    expect(userRepository.getUserByEmail).toHaveBeenCalledTimes(1);
+    expect(hashPasswordService.comparePassword).toHaveBeenCalledTimes(1);
+  });
+});
