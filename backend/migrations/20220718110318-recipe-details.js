@@ -83,7 +83,7 @@ exports.up = function (db) {
     recipe_tag_id: {
       type: 'int',
       unsigned: true,
-      notNull: true,
+      notNull: false,
       foreignKey: {
         name: 'recipe_ingredient_recipe_tag_id_fk',
         table: 'recipe_tag',
@@ -97,7 +97,7 @@ exports.up = function (db) {
     shopping_list_id: {
       type: 'int',
       unsigned: true,
-      notNull: true,
+      notNull: false,
       foreignKey: {
         name: 'recipe_ingredient_shopping_list_id_fk',
         table: 'shopping_list',
