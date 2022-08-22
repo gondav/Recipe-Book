@@ -291,4 +291,51 @@ describe('loginUser', () => {
     expect(userRepository.getUserByEmail).toHaveBeenCalledTimes(1);
     expect(hashPasswordService.comparePassword).toHaveBeenCalledTimes(1);
   });
+
+  it('should throw unauthorized error is no returned user from db', async () => {
+    // Arrange
+    userRepository.getUserByEmail = jest.fn().mockReturnValue([]);
+    hashPasswordService.comparePassword = jest.fn();
+
+    // Act
+    try {
+      await userService.loginUser('mock@email.com', 'mockPassword1');
+    } catch (error) {
+      // Assert
+      expect(error.status).toBe(401);
+      expect(error.message).toBe(
+        'You have entered an invalid email or password'
+      );
+      expect(hashPasswordService.comparePassword).not.toHaveBeenCalled();
+    }
+  });
+
+  it('should throw unauthorized error if password is not valid', async () => {
+    // Arrange
+    const mockReturnedUserObjArr: IUserDomainModel[] = [
+      {
+        id: 1,
+        firstName: 'mockFirstName',
+        lastName: 'mockLastName',
+        email: 'mock@email.com',
+        password: 'mockPassword1'
+      }
+    ];
+
+    userRepository.getUserByEmail = jest
+      .fn()
+      .mockReturnValue(mockReturnedUserObjArr);
+    hashPasswordService.comparePassword = jest.fn().mockReturnValue(false);
+
+    // Act
+    try {
+      await userService.loginUser('mock@email.com', 'mockPassword1');
+    } catch (error) {
+      // Assert
+      expect(error.status).toBe(401);
+      expect(error.message).toBe(
+        'You have entered an invalid email or password'
+      );
+    }
+  });
 });
