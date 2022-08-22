@@ -190,4 +190,74 @@ describe('updatePassword', () => {
       expect(error.message).toBe('User not found or account does not exist');
     }
   });
+
+  it('should return unauthorized error if password is invalid', async () => {
+    // Arrange
+    const mockReturnedUserObjArr: IUserDomainModel[] = [
+      {
+        id: 1,
+        firstName: 'mockFirstName',
+        lastName: 'mockLastName',
+        email: 'mock@email.com',
+        password: 'mockPassword1'
+      }
+    ];
+
+    userRepository.getUserByEmail = jest
+      .fn()
+      .mockReturnValue(mockReturnedUserObjArr);
+    hashPasswordService.comparePassword = jest.fn().mockReturnValue(false);
+
+    // Act
+    try {
+      await userService.updatePassword(
+        'mock@email.com',
+        'oldPassword',
+        'newPassword'
+      );
+    } catch (error) {
+      // Assert
+      expect(error.status).toBe(401);
+      expect(error.message).toBe(
+        'You have entered an invalid username or password'
+      );
+    }
+  });
+
+  it('should return server Error is affected rows is less than 1', async () => {
+    // Arrange
+    const mockReturnedUserObjArr: IUserDomainModel[] = [
+      {
+        id: 1,
+        firstName: 'mockFirstName',
+        lastName: 'mockLastName',
+        email: 'mock@email.com',
+        password: 'mockPassword1'
+      }
+    ];
+
+    userRepository.getUserByEmail = jest
+      .fn()
+      .mockReturnValue(mockReturnedUserObjArr);
+    hashPasswordService.comparePassword = jest.fn().mockReturnValue(true);
+    hashPasswordService.generateHashedPassword = jest
+      .fn()
+      .mockReturnValue('newPassword');
+    userRepository.updatePassword = jest
+      .fn()
+      .mockReturnValue({ affectedRows: 0 });
+
+    //Act
+    try {
+      await userService.updatePassword(
+        'mock@email.com',
+        'oldPassword',
+        'newPassword'
+      );
+    } catch (error) {
+      //Assert
+      expect(error.status).toBe(500);
+      expect(error.message).toBe('Cannot update password');
+    }
+  });
 });
