@@ -48,7 +48,7 @@ exports.up = function (db) {
           onDelete: 'CASCADE',
           onUpdate: 'RESTRICT'
         },
-        mapping: 'recipe_id'
+        mapping: 'id'
       }
     }
   });
