@@ -1,5 +1,10 @@
 .img-inlay {
-  background-image: url("../../../assets/form-background.jpg");
+  min-height: calc(100vh - 310px);
+  background: linear-gradient(
+      rgba(248, 248, 248, 0.73),
+      rgba(248, 248, 248, 0.73)
+    ),
+    url("../../../assets/form-background.jpg");
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
