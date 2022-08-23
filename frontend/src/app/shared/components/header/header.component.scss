@@ -2,6 +2,7 @@
 
 header {
   nav {
+    height: 110px;
     background-color: $color-primary;
   }
 
@@ -118,6 +119,10 @@ header {
 }
 
 @media screen and (max-width: 800px) {
+  nav {
+    height: 70px;
+  }
+
   .nav-sub,
   .nav-main-wrapper,
   .header-section {
