@@ -29,13 +29,13 @@ exports.up = function (db) {
       unsigned: true,
       notNull: true,
       foreignKey: {
-        name: 'recipe_ingredient_recipe_id_fk',
+        name: 'recipe_details_recipe_id_fk',
         table: 'recipe',
         rules: {
           onDelete: 'CASCADE',
           onUpdate: 'RESTRICT'
         },
-        mapping: 'recipe_id'
+        mapping: 'id'
       }
     },
     measurement_id: {
@@ -43,13 +43,13 @@ exports.up = function (db) {
       unsigned: true,
       notNull: true,
       foreignKey: {
-        name: 'recipe_ingredient_measurement_id_fk',
+        name: 'recipe_details_measurement_id_fk',
         table: 'measurement_unit',
         rules: {
           onDelete: 'CASCADE',
           onUpdate: 'RESTRICT'
         },
-        mapping: 'measurement_id'
+        mapping: 'id'
       }
     },
     measurement_qty_id: {
@@ -57,13 +57,13 @@ exports.up = function (db) {
       unsigned: true,
       notNull: true,
       foreignKey: {
-        name: 'recipe_ingredient_measurement_qty_id_fk',
+        name: 'recipe_details_measurement_qty_id_fk',
         table: 'measurement_qty',
         rules: {
           onDelete: 'CASCADE',
           onUpdate: 'RESTRICT'
         },
-        mapping: 'measurement_qty_id'
+        mapping: 'id'
       }
     },
     ingredient_id: {
@@ -71,41 +71,41 @@ exports.up = function (db) {
       unsigned: true,
       notNull: true,
       foreignKey: {
-        name: 'recipe_ingredient_ingredient_id_fk',
+        name: 'recipe_details_ingredient_id_fk',
         table: 'ingredient',
         rules: {
           onDelete: 'CASCADE',
           onUpdate: 'RESTRICT'
         },
-        mapping: 'ingredient_id'
+        mapping: 'id'
       }
     },
     recipe_tag_id: {
       type: 'int',
       unsigned: true,
-      notNull: true,
+      notNull: false,
       foreignKey: {
-        name: 'recipe_ingredient_recipe_tag_id_fk',
+        name: 'recipe_details_recipe_tag_id_fk',
         table: 'recipe_tag',
         rules: {
           onDelete: 'CASCADE',
           onUpdate: 'RESTRICT'
         },
-        mapping: 'tag_id'
+        mapping: 'id'
       }
     },
     shopping_list_id: {
       type: 'int',
       unsigned: true,
-      notNull: true,
+      notNull: false,
       foreignKey: {
-        name: 'recipe_ingredient_shopping_list_id_fk',
+        name: 'recipe_details_shopping_list_id_fk',
         table: 'shopping_list',
         rules: {
           onDelete: 'CASCADE',
           onUpdate: 'RESTRICT'
         },
-        mapping: 'shopping_list_id'
+        mapping: 'id'
       }
     }
   });
