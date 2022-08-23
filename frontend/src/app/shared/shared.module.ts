@@ -5,6 +5,7 @@ import { RouterModule } from '@angular/router';
 import { BackgroundImgUrlPipe } from './pipes/background-img-url.pipe';
 import { RecipeCardComponent } from './components/recipes-section/recipe-card/recipe-card.component';
 import { RecipesSectionComponent } from './components/recipes-section/recipes-section.component';
+import { FooterComponent } from './components/footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -12,6 +13,7 @@ import { RecipesSectionComponent } from './components/recipes-section/recipes-se
     BackgroundImgUrlPipe,
     RecipeCardComponent,
     RecipesSectionComponent,
+    FooterComponent,
   ],
   imports: [CommonModule, RouterModule],
   exports: [
@@ -19,6 +21,7 @@ import { RecipesSectionComponent } from './components/recipes-section/recipes-se
     BackgroundImgUrlPipe,
     RecipeCardComponent,
     RecipesSectionComponent,
+    FooterComponent,
   ],
 })
 export class SharedModule {}
