@@ -19,7 +19,7 @@ describe('getUserById', () => {
 
     userRepository.getUserById = jest
       .fn()
-      .mockReturnValue(mockReturnedUserObjArr);
+      .mockResolvedValue(mockReturnedUserObjArr);
 
     // Act
     const result = await userService.getUserById(1);
@@ -32,7 +32,7 @@ describe('getUserById', () => {
     // Arrange
     const mockUserObj: IUserDomainModel[] = [];
 
-    userRepository.getUserById = jest.fn().mockReturnValue(mockUserObj);
+    userRepository.getUserById = jest.fn().mockResolvedValue(mockUserObj);
 
     try {
       // Act
@@ -55,11 +55,11 @@ describe('registerUser', () => {
       password: 'mockPassword1'
     };
 
-    userRepository.getUserByEmail = jest.fn().mockReturnValue([]);
+    userRepository.getUserByEmail = jest.fn().mockResolvedValue([]);
     hashPasswordService.generateHashedPassword = jest.fn();
     userRepository.registerUser = jest
       .fn()
-      .mockReturnValue({ affectedRows: 1 });
+      .mockResolvedValue({ affectedRows: 1 });
 
     // Act
     await userService.registerUser(mockReturnedUserObj);
@@ -91,7 +91,7 @@ describe('registerUser', () => {
 
     userRepository.getUserByEmail = jest
       .fn()
-      .mockReturnValue(mockReturnedUserObjArr);
+      .mockResolvedValue(mockReturnedUserObjArr);
 
     try {
       // Act
@@ -114,11 +114,11 @@ describe('registerUser', () => {
       password: 'mockPassword1'
     };
 
-    userRepository.getUserByEmail = jest.fn().mockReturnValue([]);
+    userRepository.getUserByEmail = jest.fn().mockResolvedValue([]);
     hashPasswordService.generateHashedPassword = jest.fn();
     userRepository.registerUser = jest
       .fn()
-      .mockReturnValue({ affectedRows: 0 });
+      .mockResolvedValue({ affectedRows: 0 });
 
     try {
       //Act
@@ -146,17 +146,17 @@ describe('updatePassword', () => {
 
     userRepository.getUserByEmail = jest
       .fn()
-      .mockReturnValue(mockReturnedUserObjArr);
+      .mockResolvedValue(mockReturnedUserObjArr);
 
-    hashPasswordService.comparePassword = jest.fn().mockReturnValue(true);
+    hashPasswordService.comparePassword = jest.fn().mockResolvedValue(true);
 
     hashPasswordService.generateHashedPassword = jest
       .fn()
-      .mockReturnValue('hashedPassword');
+      .mockResolvedValue('hashedPassword');
 
     userRepository.updatePassword = jest
       .fn()
-      .mockReturnValue({ affectedRows: 1 });
+      .mockResolvedValue({ affectedRows: 1 });
 
     //Act
     await userService.updatePassword(
@@ -174,7 +174,7 @@ describe('updatePassword', () => {
 
   it("should return notFound if userRepository doesn't return a user", async () => {
     // Arrange
-    userRepository.getUserByEmail = jest.fn().mockReturnValue([]);
+    userRepository.getUserByEmail = jest.fn().mockResolvedValue([]);
 
     try {
       //Act
@@ -185,7 +185,6 @@ describe('updatePassword', () => {
       );
     } catch (error) {
       // Assert
-      console.log('ERROR', error);
       expect(error.status).toBe(404);
       expect(error.message).toBe('User not found or account does not exist');
     }
@@ -205,8 +204,8 @@ describe('updatePassword', () => {
 
     userRepository.getUserByEmail = jest
       .fn()
-      .mockReturnValue(mockReturnedUserObjArr);
-    hashPasswordService.comparePassword = jest.fn().mockReturnValue(false);
+      .mockResolvedValue(mockReturnedUserObjArr);
+    hashPasswordService.comparePassword = jest.fn().mockResolvedValue(false);
 
     try {
       // Act
@@ -238,14 +237,14 @@ describe('updatePassword', () => {
 
     userRepository.getUserByEmail = jest
       .fn()
-      .mockReturnValue(mockReturnedUserObjArr);
-    hashPasswordService.comparePassword = jest.fn().mockReturnValue(true);
+      .mockResolvedValue(mockReturnedUserObjArr);
+    hashPasswordService.comparePassword = jest.fn().mockResolvedValue(true);
     hashPasswordService.generateHashedPassword = jest
       .fn()
-      .mockReturnValue('newPassword');
+      .mockResolvedValue('newPassword');
     userRepository.updatePassword = jest
       .fn()
-      .mockReturnValue({ affectedRows: 0 });
+      .mockResolvedValue({ affectedRows: 0 });
 
     try {
       //Act
@@ -280,8 +279,8 @@ describe('loginUser', () => {
 
     userRepository.getUserByEmail = jest
       .fn()
-      .mockReturnValue(mockReturnedUserObjArr);
-    hashPasswordService.comparePassword = jest.fn().mockReturnValue(true);
+      .mockResolvedValue(mockReturnedUserObjArr);
+    hashPasswordService.comparePassword = jest.fn().mockResolvedValue(true);
 
     // Act
     const result = await userService.loginUser(mockEmail, mockPassword);
@@ -294,7 +293,7 @@ describe('loginUser', () => {
 
   it('should throw unauthorized error is no returned user from db', async () => {
     // Arrange
-    userRepository.getUserByEmail = jest.fn().mockReturnValue([]);
+    userRepository.getUserByEmail = jest.fn().mockResolvedValue([]);
     hashPasswordService.comparePassword = jest.fn();
 
     try {
@@ -324,8 +323,8 @@ describe('loginUser', () => {
 
     userRepository.getUserByEmail = jest
       .fn()
-      .mockReturnValue(mockReturnedUserObjArr);
-    hashPasswordService.comparePassword = jest.fn().mockReturnValue(false);
+      .mockResolvedValue(mockReturnedUserObjArr);
+    hashPasswordService.comparePassword = jest.fn().mockResolvedValue(false);
 
     try {
       // Act
@@ -343,7 +342,9 @@ describe('loginUser', () => {
 describe('deleteUser', () => {
   it('should throw error if affectedRows less than 1', async () => {
     // Arrange
-    userRepository.deleteUser = jest.fn().mockReturnValue({ affectedRows: 0 });
+    userRepository.deleteUser = jest
+      .fn()
+      .mockResolvedValue({ affectedRows: 0 });
 
     try {
       // Act

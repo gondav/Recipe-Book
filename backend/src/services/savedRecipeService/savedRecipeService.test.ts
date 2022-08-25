@@ -29,7 +29,7 @@ describe('getSavedRecipesByUserId', () => {
     ];
     savedRecipeRepository.getSavedRecipesByUserId = jest
       .fn()
-      .mockReturnValue(recipeList);
+      .mockResolvedValue(recipeList);
 
     // Act
     const result = await savedRecipeService.getSavedRecipesByUserId(userId);
@@ -48,7 +48,7 @@ describe('getSavedRecipesByUserId', () => {
     // Arrange
     savedRecipeRepository.getSavedRecipesByUserId = jest
       .fn()
-      .mockReturnValue(new Error('Database Error'));
+      .mockResolvedValue(new Error('Database Error'));
 
     // Act
     const result = await savedRecipeService.getSavedRecipesByUserId(userId);
@@ -71,7 +71,7 @@ describe('saveRecipe', () => {
 
   it('should return a notFoundError Promise if user not found in DB', async () => {
     // Arrange
-    userRepository.getUserById = jest.fn().mockReturnValue([]);
+    userRepository.getUserById = jest.fn().mockResolvedValue([]);
 
     try {
       // Act
@@ -85,8 +85,8 @@ describe('saveRecipe', () => {
 
   it('should return a notFoundError Promise if recipe not found in DB', async () => {
     // Arrange
-    userRepository.getUserById = jest.fn().mockReturnValue([user]);
-    recipeRepository.getRecipe = jest.fn().mockReturnValue([]);
+    userRepository.getUserById = jest.fn().mockResolvedValue([user]);
+    recipeRepository.getRecipe = jest.fn().mockResolvedValue([]);
 
     try {
       // Act
@@ -112,12 +112,12 @@ describe('saveRecipe', () => {
   };
 
   it('should return a conflictError Promise if recipe is already saved by user', async () => {
-    userRepository.getUserById = jest.fn().mockReturnValue([user]);
-    recipeRepository.getRecipe = jest.fn().mockReturnValue([recipe]);
+    userRepository.getUserById = jest.fn().mockResolvedValue([user]);
+    recipeRepository.getRecipe = jest.fn().mockResolvedValue([recipe]);
     // Arrange
     savedRecipeRepository.getSavedRecipeId = jest
       .fn()
-      .mockReturnValue([savedRecipe]);
+      .mockResolvedValue([savedRecipe]);
 
     try {
       // Act
@@ -131,12 +131,12 @@ describe('saveRecipe', () => {
 
   it('should return serverError Promise if affectedRows equals to 0', async () => {
     // Arrange
-    userRepository.getUserById = jest.fn().mockReturnValue([user]);
-    recipeRepository.getRecipe = jest.fn().mockReturnValue([recipe]);
-    savedRecipeRepository.getSavedRecipeId = jest.fn().mockReturnValue([]);
+    userRepository.getUserById = jest.fn().mockResolvedValue([user]);
+    recipeRepository.getRecipe = jest.fn().mockResolvedValue([recipe]);
+    savedRecipeRepository.getSavedRecipeId = jest.fn().mockResolvedValue([]);
     savedRecipeRepository.saveRecipe = jest
       .fn()
-      .mockReturnValue({ affectedRows: 0 });
+      .mockResolvedValue({ affectedRows: 0 });
 
     try {
       // Act
@@ -154,7 +154,7 @@ describe('removeSavedRecipe', () => {
     // Arrange
     savedRecipeRepository.removeSavedRecipe = jest
       .fn()
-      .mockReturnValue({ affectedRows: 0 });
+      .mockResolvedValue({ affectedRows: 0 });
 
     try {
       // Act
