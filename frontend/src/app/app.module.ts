@@ -5,9 +5,9 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
-import { TokenInterceptor } from '../app/core/interceptors/tokenInterceptor/token.interceptor';
+import { TokenInterceptor } from 'src/app/core/interceptors/tokenInterceptor/token.interceptor';
 import { CoreModule } from './core/core.module';
-import { SharedModule } from './shared/shared.module';
+import { SharedModule } from '../app/shared/shared.module';
 
 @NgModule({
   declarations: [AppComponent],
