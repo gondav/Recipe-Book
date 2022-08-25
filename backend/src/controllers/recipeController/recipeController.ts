@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from 'express';
-import { badRequestError } from '../services/errorCreatorService';
-import { recipeService } from '../services/recipeService';
+import { badRequestError } from '../../services/errorCreatorService';
+import { recipeService } from '../../services/recipeService';
 
 export const recipeController = {
   async getRecipes(_req: Request, res: Response, _next: NextFunction) {
