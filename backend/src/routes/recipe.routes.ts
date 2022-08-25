@@ -1,6 +1,6 @@
 import express from 'express';
 import errorChecker from '../middlewares/errorChecker/errorChecker';
-import { recipeController } from '../controllers/recipeController';
+import { recipeController } from '../controllers/recipeController/recipeController';
 
 export const recipeRouter = express.Router();
 
