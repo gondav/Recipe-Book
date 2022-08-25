@@ -3,5 +3,5 @@ export interface IRecipeDomainModel {
   recipeName: string;
   description: string;
   imageId: string;
-  instruction: string;
+  instruction?: string;
 }
