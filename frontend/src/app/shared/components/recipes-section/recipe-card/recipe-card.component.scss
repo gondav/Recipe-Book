@@ -38,7 +38,8 @@ $card-img-size-small: 260px;
       }
     }
 
-    .circle.not-favorite {
+    .circle.not-favorite,
+    .circle.cart {
       background-color: $color-secondary;
       color: $color-light-black;
 
