@@ -50,11 +50,14 @@ describe('getSavedRecipesByUserId', () => {
       .fn()
       .mockResolvedValue(new Error('Database Error'));
 
-    // Act
-    const result = await savedRecipeService.getSavedRecipesByUserId(userId);
-
-    // Assert
-    expect(result).toEqual(new Error('Database Error'));
+    try {
+      // Act
+      await savedRecipeService.getSavedRecipesByUserId(userId);
+    } catch (error) {
+      // Assert
+      expect(error.status).toBe(500);
+      expect(error.message).toBe('Database Error');
+    }
   });
 });
 
@@ -69,7 +72,7 @@ describe('saveRecipe', () => {
     password: 'mockPassword'
   };
 
-  it('should return a notFoundError Promise if user not found in DB', async () => {
+  it('should return a notFoundError if user not found in DB', async () => {
     // Arrange
     userRepository.getUserById = jest.fn().mockResolvedValue([]);
 
@@ -83,7 +86,7 @@ describe('saveRecipe', () => {
     }
   });
 
-  it('should return a notFoundError Promise if recipe not found in DB', async () => {
+  it('should return a notFoundError if recipe not found in DB', async () => {
     // Arrange
     userRepository.getUserById = jest.fn().mockResolvedValue([user]);
     recipeRepository.getRecipe = jest.fn().mockResolvedValue([]);
@@ -111,7 +114,7 @@ describe('saveRecipe', () => {
     recipeId: 3
   };
 
-  it('should return a conflictError Promise if recipe is already saved by user', async () => {
+  it('should return a conflictError if recipe is already saved by user', async () => {
     userRepository.getUserById = jest.fn().mockResolvedValue([user]);
     recipeRepository.getRecipe = jest.fn().mockResolvedValue([recipe]);
     // Arrange
@@ -150,7 +153,7 @@ describe('saveRecipe', () => {
 });
 
 describe('removeSavedRecipe', () => {
-  it('should return a notFoundError Promise if saved recipe is not found', async () => {
+  it('should return a notFoundError if saved recipe is not found', async () => {
     // Arrange
     savedRecipeRepository.removeSavedRecipe = jest
       .fn()
