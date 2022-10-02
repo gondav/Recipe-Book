@@ -1,0 +1,23 @@
+%flex {
+  display: flex;
+}
+
+.flex-align-center {
+  @extend %flex;
+  align-items: center;
+}
+
+.flex-column {
+  @extend %flex;
+  flex-direction: column;
+}
+
+.flex-center {
+  @extend %flex;
+  align-items: center;
+  justify-content: center;
+}
+
+a {
+  text-decoration: none;
+}
