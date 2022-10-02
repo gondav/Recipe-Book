@@ -1,13 +1,13 @@
-<div class="card-wrapper flex-column">
+<div (click)="loadRecipe()" class="card-wrapper flex-column">
   <div
     class="img-container"
     [ngStyle]="{ 'background-image': recipe.imageId | backgroundImgUrl }"
   >
-    <span class="circle not-favorite">
+    <span (click)="toggleCart(); $event.stopPropagation()" class="circle cart">
       <i class="fa-solid fa-cart-shopping"></i>
     </span>
     <span
-      (click)="toggleFavoriteRecipes()"
+      (click)="toggleFavoriteRecipes(); $event.stopPropagation()"
       [ngClass]="isRecipeFavorite ? 'favorite' : 'not-favorite'"
       class="circle"
     >
