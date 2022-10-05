@@ -32,7 +32,7 @@ const routes: Routes = [
       ),
   },
   {
-    path: 'recipes/:recipe-name',
+    path: 'recipes/:recipeId',
     loadChildren: () =>
       import('../app/features/recipe-details/recipe-details.module').then(
         (m) => m.RecipeDetailsModule
