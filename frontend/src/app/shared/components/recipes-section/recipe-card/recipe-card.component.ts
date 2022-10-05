@@ -76,7 +76,6 @@ export class RecipeCardComponent implements OnInit {
   }
 
   loadRecipe(): void {
-    const recipeName = this.recipe.recipeName.split(' ').join('-');
-    this.router.navigate([`recipes/${recipeName}`]);
+    this.router.navigate([`recipes/${this.recipe.recipeId}`]);
   }
 }
