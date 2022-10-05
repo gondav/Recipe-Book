@@ -6,6 +6,7 @@ export const environment = {
   production: false,
   baseURL: 'http://localhost:3000/api',
   recipeEndpoint: 'recipe/recipes',
+  detailedRecipeEndpoint: 'recipe/recipes/details',
   userEndpoint: 'user/users',
   userLoginEndpoint: 'user/login',
   savedRecipesEndpoint: 'savedrecipe/savedrecipes',
