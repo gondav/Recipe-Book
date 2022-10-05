@@ -8,6 +8,8 @@ import { IRecipeListResponseModel } from '../../../shared/models/responses/IReci
 import { IRecipeViewModel } from '../../../shared/models/viewmodels/IRecipeViewModel';
 import { AuthService } from '../auth-service/auth.service';
 import { BaseHttpService } from '../base-service/base.service';
+import { IDetailedRecipeViewModel } from 'src/app/shared/models/viewmodels/IDetailedRecipeViewModel';
+import { IDetailedRecipeResponseModel } from 'src/app/shared/models/responses/IDetailedRecipeResponseModel';
 
 @Injectable({
   providedIn: 'root',
@@ -51,6 +53,15 @@ export class RecipeService {
     return this.baseHttpService
       .getItems<IRecipeListResponseModel>(environment.recipeEndpoint)
       .pipe(map((response) => response.recipeList.slice(0, 9)));
+  }
+
+  getRecipe(recipeId: number): Observable<IDetailedRecipeViewModel> {
+    return this.baseHttpService
+      .getItemByParam<IDetailedRecipeResponseModel>(
+        environment.detailedRecipeEndpoint,
+        recipeId
+      )
+      .pipe(map((response) => response.detailedRecipe));
   }
 
   getRecipeIdsFromRecipeList(recipeList: IRecipeViewModel[]): number[] {
