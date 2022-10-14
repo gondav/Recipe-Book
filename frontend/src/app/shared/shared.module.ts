@@ -18,10 +18,10 @@ import { FooterComponent } from './components/footer/footer.component';
   imports: [CommonModule, RouterModule],
   exports: [
     HeaderComponent,
-    BackgroundImgUrlPipe,
     RecipeCardComponent,
     RecipesSectionComponent,
     FooterComponent,
+    BackgroundImgUrlPipe,
   ],
 })
 export class SharedModule {}

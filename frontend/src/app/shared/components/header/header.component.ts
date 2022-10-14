@@ -36,7 +36,7 @@ export class HeaderComponent implements OnInit {
   ngOnInit(): void {
     this.route.parent?.url.subscribe({
       next: (url) => {
-        this.isLandingPage = url[0].path === 'recipes';
+        this.isLandingPage = url[0].path === 'recipes' && url.length === 1;
       },
       error: (error) => console.log(error),
     });

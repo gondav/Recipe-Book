@@ -31,6 +31,13 @@ const routes: Routes = [
         (m) => m.AuthenticationModule
       ),
   },
+  {
+    path: 'recipes/:recipeId',
+    loadChildren: () =>
+      import('../app/features/recipe-details/recipe-details.module').then(
+        (m) => m.RecipeDetailsModule
+      ),
+  },
 ];
 
 @NgModule({

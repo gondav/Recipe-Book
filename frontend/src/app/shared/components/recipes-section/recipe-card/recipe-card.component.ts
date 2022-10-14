@@ -41,6 +41,8 @@ export class RecipeCardComponent implements OnInit {
       : this.addRecipeToFavorites(userId, recipeId);
   }
 
+  toggleCart(): void {}
+
   addRecipeToFavorites(userId: number, recipeId: number): void {
     this.recipeService.addRecipeToFavorites({ userId, recipeId }).subscribe({
       next: (_response) => {
@@ -71,5 +73,9 @@ export class RecipeCardComponent implements OnInit {
         }
       },
     });
+  }
+
+  loadRecipe(): void {
+    this.router.navigate([`recipes/${this.recipe.recipeId}`]);
   }
 }
